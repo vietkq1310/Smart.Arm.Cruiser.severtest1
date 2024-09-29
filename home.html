@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" contents="IF=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- googleapis -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- main.cpp -->
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="./main_home.css" />
+    <link rel="stylesheet" href="./main_control.css" />
+    <link rel="stylesheet" href="./main_setting.css" />
+    <title>Control</title>
+    <!-- <link rel="icon" href="./Img/LOGO.png" type="image/png" /> -->
+  </head>
+  <body>
+    <div class="rotary_phone">
+      <h5>Hãy xoay ngang để tiếp tục xử dụng</h5>
+
+      <i class="fa-solid fa-mobile-screen rotate-icon phone-icon"></i>
+      <div class="rotary_phone_1">
+        <i class="fa-solid fa-arrows-rotate rotate-icon large-icon"></i>
+      </div>
+    </div>
+
+    <div class="user_layout">
+      <!-- Hiển thị phần navbar Menu -->
+      <header>
+        <nav class="navbar">
+          <!-- link -->
+          <ul class="navbar_links">
+            <!-- <a href="home.html"><img src="/Img/LOGO.png" alt="icon"></a> -->
+            <li class="navbar_link">
+              <a href="#" class="active" onclick="openHome()">
+                <icon_i class="fa-solid fa-house-user"></icon_i> Trang chủ</a
+              >
+            </li>
+            <li class="navbar_link">
+              <a href="#" class="active" onclick="openControl()">
+                <icon_i class="fa-solid fa-gamepad"></icon_i> Điều khiển
+              </a>
+            </li>
+            <li class="navbar_link">
+              <a href="#" class="active" onclick="openModal()">
+                <icon_i class="fa-solid fa-screwdriver-wrench"></icon_i>Cài
+                Đặt</a
+              >
+            </li>
+            <li class="navbar_link">
+              <a href="#" class="active" onclick="openInfo()">
+                <icon_i class="fa-solid fa-circle-info"></icon_i> Thông tin</a
+              >
+            </li>
+            <li class="navbar_link">
+              <a class="open_navbar">
+                <icon_i class="fa-solid fa-arrow-right-from-bracket"></icon_i>
+                Đóng
+              </a>
+            </li>
+          </ul>
+          <!-- button -->
+          <div class="navbar_icons">
+            <div>
+              <div class="navbar_icon"></div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Hiển thị phần trang chủ  -->
+      <section id="banner">
+        <div class="container">
+          <div class="banner_img">
+            <img
+              src="./Img/Angry_Robot_3D.png"
+              alt="Angry Robot"
+              class="responsive-image"
+            />
+          </div>
+          <div class="banner_heading">
+            <h1>Smart Arm Cruiser</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam,
+              amet. Accusamus beatae, consectetur dolorum explicabo sint
+              incidunt. Earum, quae nobis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hiển thị nội dung phần Control -->
+      <section id="Control_modal" class="modal_C">
+        <div class="Control_content">
+          <div class="Part_Display">
+            <h4>Control Page</h4>
+            <div class="display_car">
+              <!-- hiển thị nội dung step -->
+              <div class="display_stepcar">
+                <div id="Step_A">Step A :</div>
+                <div id="Step_B">Step B :</div>
+                <div id="Step_C">Step C :</div>
+                <div id="Step_D">Step D :</div>
+              </div>
+              <!-- hiển thị icon car -->
+              <div class="icon_car">
+                <div class="arrow up">
+                  <i class="fa-solid fa-angles-up"></i>
+                </div>
+                <div class="arrow up-right">
+                  <i class="fa-solid fa-angles-right"></i>
+                </div>
+                <div class="arrow right">
+                  <i class="fa-solid fa-angles-right"></i>
+                </div>
+                <div class="arrow down-right">
+                  <i class="fa-solid fa-angles-right"></i>
+                </div>
+                <div class="arrow down">
+                  <i class="fa-solid fa-angles-down"></i>
+                </div>
+                <div class="arrow down-left">
+                  <i class="fa-solid fa-angles-right"></i>
+                </div>
+                <div class="arrow left">
+                  <i class="fa-solid fa-angles-left"></i>
+                </div>
+                <div class="arrow up-left">
+                  <i class="fa-solid fa-angles-right"></i>
+                </div>
+                <div class="arrow tunr-right">
+                  <i class="fa-solid fa-arrow-rotate-right"></i>
+                </div>
+                <div class="arrow tunr-left">
+                  <i class="fa-solid fa-arrow-rotate-left"></i>
+                </div>
+                <!-- Hiển thị tab control  -->
+
+                <!-- Hiển thị nút nhấn điều khiển Car -->
+                <img src="./Img/icon_carr-Photoroom.png" alt="" />
+              </div>
+            </div>
+
+            <div class="display_home">
+              <div id="connectStatus" class="status_1">
+                Trạng thái kết nối : <span id="connectText"></span>
+              </div>
+              <div class="status_2">
+                Trạng thái arm: <span id="armStatus"></span>
+              </div>
+              <div class="status_2">
+                Trạng thái car: <span id="carStatus"></span>
+              </div>
+            </div>
+            <div class="display_arm"></div>
+          </div>
+
+          <div class="Control_All">
+            <!-- hiển thị bảng điều khiển chính  -->
+            <div class="Control_panel">
+              <div class="navbar-controls">
+                <div class="liner"></div>
+                <li class="navbar-control" onclick="sendCommand('GoHome_car')">
+                  Gohome Car
+                </li>
+                <li class="navbar-control" onclick="sendCommand('GoHome_arm')">
+                  Gohome Arm
+                </li>
+                <li class="navbar-control" onclick="sendCommand('GoHome_all')">
+                  Gohome All
+                </li>
+
+                <form id="numberForm">
+                  <div class="navbar_control_axis">
+                    <div class="navbar_arm_axis">
+                      <button type="button" onclick="runArm()">Run Arm</button>
+                      <label for="inputXA">X :</label>
+                      <input type="text" id="inputXA" name="inputXA" />
+                      <label for="inputYA">Y :</label>
+                      <input type="text" id="inputYA" name="inputYA" />
+                      <label for="inputZA">Z :</label>
+                      <input type="text" id="inputZA" name="inputZA" />
+                    </div>
+                    <div class="navbar_car_axis">
+                      <button type="button" onclick="runCar()">Run Car</button>
+                      <label for="inputXC">X :</label>
+                      <input type="text" id="inputXC" name="inputXC" />
+                      <label for="inputYC">Y :</label>
+                      <input type="text" id="inputYC" name="inputYC" />
+                    </div>
+                  </div>
+                </form>
+
+                <span id="errorMessage" class="error-message"
+                  >Vui lòng nhập một số hợp lệ.</span
+                >
+              </div>
+              <div class="button-control">
+                <!-- Nút điều khiển thuộc cột 1 -->
+                <div class="Column_1s">
+                  <div class="arrow_narbar_C"></div>
+                  <div class="Column_1">
+                    <span class="icon"
+                      ><i class="fa-solid fa-left-right"></i>
+                      <div class="valueInput1">
+                        <span class="next1" onclick="nextNum1()"></span>
+                        <span class="prev1" onclick="prevNum1()"></span>
+                        <div id="box1"></div>
+                      </div>
+                    </span>
+
+                    <span class="icon"
+                      ><i class="fa-solid fa-up-down"></i>
+                      <div class="valueInput2">
+                        <span class="next2" onclick="nextNum2()"></span>
+                        <span class="prev2" onclick="prevNum2()"></span>
+                        <div id="box2"></div>
+                      </div>
+                    </span>
+
+                    <span class="icon"
+                      ><i class="fa-solid fa-rotate"></i>
+                      <div class="valueInput3">
+                        <span class="next3" onclick="nextNum3()"></span>
+                        <span class="prev3" onclick="prevNum3()"></span>
+                        <div id="box3"></div>
+                      </div>
+                    </span>
+
+                    <span class="icon"><i>E</i> </span>
+
+                    <span class="icon"><i>A</i> </span>
+
+                    <div id="toggle_switch1">
+                      <input type="checkbox" class="switch_1" id="EN_A" />
+                    </div>
+                    <div id="toggle_switch2">
+                      <input type="checkbox" class="switch_2" id="EX_1" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Nút điều khiển thuộc cột 2 -->
+                <div class="Column_2">
+                  <div class="Button_1L">
+                    <div class="circle"></div>
+                    <i
+                      class="fa-solid fa-circle-chevron-up buttons_1lu"
+                      data-command="1LUP"
+                    ></i>
+                    <i
+                      class="fa-solid fa-circle-chevron-down buttons_1ld"
+                      data-command="1LDOWN"
+                    ></i>
+                    <i
+                      class="fa-solid fa-circle-chevron-right buttons_1lr"
+                      data-command="1LRIGHT"
+                    ></i>
+                    <i
+                      class="fa-solid fa-circle-chevron-left buttons_1ll"
+                      data-command="1LLEFT"
+                    ></i>
+                  </div>
+                  <div class="Button_2L">
+                    <div class="circle"></div>
+                    <i
+                      class="fa-solid fa-circle-chevron-right buttons_2lr"
+                      data-command="2LRIGHT"
+                    ></i>
+                    <i
+                      class="fa-solid fa-circle-chevron-left buttons_2ll"
+                      data-command="2LLEFT"
+                    ></i>
+                  </div>
+                </div>
+
+                <div class="Column_3">
+                  <div class="Row_1">
+                    <li
+                      class="Box_column_3 Start"
+                      onclick="sendCommand('Starts')"
+                    >
+                      Start
+                    </li>
+                    <li
+                      class="Box_column_3 Stop"
+                      onclick="sendCommand('Stops')"
+                    >
+                      Stop
+                    </li>
+
+                    <li
+                      class="Box_column_3 extend_1"
+                      onclick="sendCommand('extend1')"
+                    >
+                      Extend 1
+                    </li>
+                    <li
+                      class="Box_column_3 extend_2"
+                      onclick="sendCommand('extend2')"
+                    >
+                      Extend 2
+                    </li>
+
+                    <li
+                      class="Box_column_3 extend_3"
+                      onclick="sendCommand('extend3')"
+                    >
+                      Extend 3
+                    </li>
+                    <li
+                      class="Box_column_3 extend_4"
+                      onclick="sendCommand('extend4')"
+                    >
+                      Extend 4
+                    </li>
+                  </div>
+
+                  <div class="Row_2">
+                    <div class="Text_c">
+                      <h6 id="servo" class="active">Servo</h6>
+                      <h5 id="suctionCup">Suction Cup</h5>
+                    </div>
+                    <div class="Content_S active">Nội dung Servo</div>
+                    <div class="Content_SC">Nội dung Suction Cup</div>
+                  </div>
+                </div>
+
+                <div class="Column_4">
+                  <div class="Button_1R">
+                    <div class="circle"></div>
+                    <i
+                      class="fa-solid fa-circle-chevron-up buttons_1ru"
+                      data-command="1RUP"
+                    ></i>
+                    <i
+                      class="fa-solid fa-circle-chevron-down buttons_1rd"
+                      data-command="1RDOWN"
+                    ></i>
+                    <i
+                      class="fa-solid fa-circle-chevron-right buttons_1rr"
+                      data-command="1RRIGHT"
+                    ></i>
+                    <i
+                      class="fa-solid fa-circle-chevron-left buttons_1rl"
+                      data-command="1RLEFT"
+                    ></i>
+                  </div>
+                  <div class="Button_2R">
+                    <div class="circle"></div>
+                    <i
+                      class="fa-solid fa-circle-chevron-right buttons_2rr"
+                      data-command="2RRIGHT"
+                    ></i>
+                    <i
+                      class="fa-solid fa-circle-chevron-left buttons_2rl"
+                      data-command="2RLEFT"
+                    ></i>
+                  </div>
+                </div>
+                <!-- Nút điều khiển thuộc cột 5 -->
+                <div class="Column_5s">
+                  <div class="arrow_narbar_C1"></div>
+                  <div class="Column_5">
+                    <span class="icon">
+                      <div class="valueInput4">
+                        <span class="next4" onclick="nextNum4()"></span>
+                        <span class="prev4" onclick="prevNum4()"></span>
+                        <div id="box4"></div>
+                      </div>
+                      <i class="fa-solid fa-left-right"></i>
+                    </span>
+
+                    <span class="icon">
+                      <div class="valueInput5">
+                        <span class="next5" onclick="nextNum5()"></span>
+                        <span class="prev5" onclick="prevNum5()"></span>
+                        <div id="box5"></div>
+                      </div>
+                      <i class="fa-solid fa-up-down"></i>
+                    </span>
+
+                    <span class="icon">
+                      <div class="valueInput6">
+                        <span class="next6" onclick="nextNum6()"></span>
+                        <span class="prev6" onclick="prevNum6()"></span>
+                        <div id="box6"></div>
+                      </div>
+                      <i class="fa-solid fa-rotate"></i>
+                    </span>
+                    <span class="icon"><i>E</i> </span>
+
+                    <span class="icon"><i>A</i> </span>
+
+                    <div id="toggle_switch3">
+                      <input type="checkbox" class="switch_3" id="EN_R" />
+                    </div>
+                    <div id="toggle_switch4">
+                      <input type="checkbox" class="switch_4" id="EX_2" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- hiển thị phần lệnh và vị trí các kho -->
+            <div class="navbar_commend">
+              <h1>Phần hiển thị lênh và di chuyển tới vị trí các kho</h1>
+              <div class="arrow_menus"><span></span></div>
+            </div>
+          </div>
+
+          <!-- các nút điều khiển  -->
+        </div>
+      </section>
+    </div>
+    <!-- Hiển thị nội dung cửa sổ cài đặt chính  -->
+    <div id="Setting_modal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Cài Đặt</h2>
+          <button class="close-btn">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="sidebar">
+            <ul>
+              <li class="active" data-target="tab-chung">
+                <i class="fa-solid fa-gear"></i> Chung
+              </li>
+              <li data-target="tab-setstep">
+                <i class="fa-solid fa-gauge-high"></i> Set Step
+              </li>
+              <li data-target="tab-ketnoi">
+                <i class="fa-solid fa-link"></i> Kết Nối
+              </li>
+              <li data-target="tab-gohome">
+                <i class="fa-solid fa-house"></i> GoHome
+              </li>
+            </ul>
+          </div>
+          <div class="content">
+            <!-- Tab Content: Chung -->
+            <div class="content-section active" id="tab-chung">
+              <div class="section_theme">
+                <h3>● Giao diện</h3>
+                <div class="Box_set_theme">
+                  <div class="dropdown">
+                    <label for="theme-main" class="label-left"
+                      >Màu giao diện chính</label
+                    >
+                    <div id="toggle_themes" class="toggle-container">
+                      <i id="theme-icon" class="fas fa-sun"></i>
+                      <input type="checkbox" class="theme" id="theme-toggle" />
+                    </div>
+                  </div>
+                  <div class="dropdown">
+                    <label for="theme-secondary" class="label-left"
+                      >Luôn hiển thị thanh bên
+                    </label>
+                    <div id="st_navbars" class="toggle-right">
+                      <input type="checkbox" class="st_navbar" />
+                    </div>
+                  </div>
+                  <div class="dropdown">
+                    <label for="theme-secondary1" class="label-left"
+                      >Giao diện điều khiển đơn giản
+                    </label>
+                    <div id="toggle_theme_control" class="toggle-right">
+                      <input type="checkbox" class="theme_control" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section_device">
+                <h3>● Thiết bị thực thi</h3>
+                <div class="custom-select" id="customSelect">
+                  <div class="select-selected">The first option</div>
+                  <div class="select-items">
+                    <div data-value="option1" data-index="0">
+                      The first option
+                    </div>
+                    <div data-value="option2" data-index="1">
+                      The second option
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab Content: Set Step -->
+            <div class="content-section" id="tab-setstep">
+              <div class="section">
+                <h3>● Set Step Car</h3>
+                <div class="Box_set_step">
+                  <div class="input-group">
+                    <label>Đặt tốc độ tối đa</label>
+                    <div class="input-wrapper">
+                      <button class="Car_decrement-speed_max">
+                        <i class="fa-solid fa-angle-left"></i>
+                      </button>
+                      <input
+                        type="number"
+                        value="1000"
+                        id="speed_max-input_Car"
+                      />
+                      <button class="Car_increment-speed_max">
+                        <i class="fa-solid fa-angle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <label>Đặt gia tốc tối đa</label>
+                    <div class="input-wrapper">
+                      <button class="Car_decrement-acceleration">
+                        <i class="fa-solid fa-angle-left"></i>
+                      </button>
+                      <input
+                        type="number"
+                        value="1000"
+                        id="acceleration-input_Car"
+                      />
+                      <button class="Car_increment-acceleration">
+                        <i class="fa-solid fa-angle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <label>Đặt tốc độ di chuyển</label>
+                    <div class="input-wrapper">
+                      <button class="Car_decrement-speed">
+                        <i class="fa-solid fa-angle-left"></i>
+                      </button>
+                      <input type="number" value="1000" id="speed-input_Car" />
+                      <button class="Car_increment-speed">
+                        <i class="fa-solid fa-angle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section">
+                <h3>● Set Step Arm</h3>
+                <div class="Box_set_step">
+                  <div class="input-group">
+                    <label>Đặt tốc độ tối đa</label>
+                    <div class="input-wrapper">
+                      <button class="Arm_decrement-speed_max">
+                        <i class="fa-solid fa-angle-left"></i>
+                      </button>
+                      <input
+                        type="number"
+                        value="1000"
+                        id="speed_max-input_Arm"
+                      />
+                      <button class="Arm_increment-speed_max">
+                        <i class="fa-solid fa-angle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <label>Đặt gia tốc tối đa</label>
+                    <div class="input-wrapper">
+                      <button class="Arm_decrement-acceleration">
+                        <i class="fa-solid fa-angle-left"></i>
+                      </button>
+                      <input
+                        type="number"
+                        value="1000"
+                        id="acceleration-input_Arm"
+                      />
+                      <button class="Arm_increment-acceleration">
+                        <i class="fa-solid fa-angle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <label>Đặt tốc độ di chuyển</label>
+                    <div class="input-wrapper">
+                      <button class="Arm_decrement-speed">
+                        <i class="fa-solid fa-angle-left"></i>
+                      </button>
+                      <input type="number" value="1000" id="speed-input_Arm" />
+                      <button class="Arm_increment-speed">
+                        <i class="fa-solid fa-angle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section">
+                <h3>● Bật tắt động cơ</h3>
+                <div class="Box_set_step">
+                  <div class="dropdown">
+                    <label>Bật tắt động cơ xe </label>
+                    <div id="toggle_switch1" class="toggle-right">
+                      <input type="checkbox" class="switch_1_st" id="EN_A" />
+                    </div>
+                  </div>
+
+                  <div class="dropdown">
+                    <label>Bật tắt động cơ cánh tay robot</label>
+                    <div id="toggle_switch2" class="toggle-right">
+                      <input type="checkbox" class="switch_2_st" id="EX_1" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- set quãng đường di chuyển khi nhấn nút  -->
+            </div>
+
+            <!-- Tab Content: Kết Nối -->
+            <div class="content-section" id="tab-ketnoi">
+              <h3>Trang Kết Nối</h3>
+            </div>
+
+            <!-- Tab Content: GoHome -->
+            <div class="content-section" id="tab-gohome">
+              <!-- Go Home Car Section -->
+              <div class="section">
+                <h3>● Go home Car</h3>
+                <div class="custom-select" id="customSelect_ghcar">
+                  <div class="select-selected">The first option</div>
+                  <div class="select-items">
+                    <div data-value="option1_ghcar" data-index_ghcar="0">
+                      The first option
+                    </div>
+                    <div data-value="option2_ghcar" data-index_ghcar="1">
+                      The second option
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+
+              <!-- Vị trí Go Home Section -->
+              <div class="section">
+                <h3>● Vị Trí Go Home</h3>
+
+                <div class="custom-select" id="customSelect_lcghcar">
+                  <div class="select-selected">The first option</div>
+                  <div class="select-items">
+                    <div data-value="option1_lcghcar" data-index_lcghcar="0">
+                      The first option
+                    </div>
+                    <div data-value="option2_lcghcar" data-index_lcghcar="1">
+                      The second option
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+
+              <!-- Go Home Arm Section -->
+              <div class="section">
+                <h3>● Go Home Arm</h3>
+
+                <div class="custom-select" id="customSelect_gharm">
+                  <div class="select-selected">The first option</div>
+                  <div class="select-items">
+                    <div data-value="option1_gharm" data-index_gharm="0">
+                      The first option
+                    </div>
+                    <div data-value="option2_gharm" data-index_gharm="1">
+                      The second option
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+              <!-- set khoảng cách gohome -->
+              <!-- set khoảng cách gohome -->
+              <div class="section">
+                <h3>● Tùy chỉnh khoảng cách Gohome</h3>
+                <div class="Box_set_step">
+                  <div class="input-group">
+                    <label>Cảm biến phía trước (mm)</label>
+                    <div class="input-wrapper">
+                      <button class="decrement-front-distance">
+                        <i class="fa-solid fa-angle-left"></i>
+                      </button>
+                      <input
+                        type="number"
+                        value="10"
+                        id="front-distance-input"
+                      />
+                      <button class="increment-front-distance">
+                        <i class="fa-solid fa-angle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <label>Cảm biến phía sau (mm)</label>
+                    <div class="input-wrapper">
+                      <button class="decrement-back-distance">
+                        <i class="fa-solid fa-angle-left"></i>
+                      </button>
+                      <input
+                        type="number"
+                        value="10"
+                        id="back-distance-input"
+                      />
+                      <button class="increment-back-distance">
+                        <i class="fa-solid fa-angle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <label>Cảm biến bên phải (mm)</label>
+                    <div class="input-wrapper">
+                      <button class="decrement-right-distance">
+                        <i class="fa-solid fa-angle-left"></i>
+                      </button>
+                      <input
+                        type="number"
+                        value="10"
+                        id="right-distance-input"
+                      />
+                      <button class="increment-right-distance">
+                        <i class="fa-solid fa-angle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <label>Cảm biến bên trái (mm)</label>
+                    <div class="input-wrapper">
+                      <button class="decrement-left-distance">
+                        <i class="fa-solid fa-angle-left"></i>
+                      </button>
+                      <input
+                        type="number"
+                        value="10"
+                        id="left-distance-input"
+                      />
+                      <button class="increment-left-distance">
+                        <i class="fa-solid fa-angle-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/f02cbc536d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

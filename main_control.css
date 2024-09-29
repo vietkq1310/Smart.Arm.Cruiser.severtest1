@@ -1,0 +1,2121 @@
+/*------------------------------------------------------------------- ==== Phần Control ==== --------------------------------------------------------------------------*/
+:root {
+  --bg_Gunmetal: #232529;
+  --Aquamarine: #24c48e;
+  --White_with: #ffffffd9;
+  --Very_Light: #ffffff1a;
+
+  --green_1: #24c48e;
+  --while: #ffffff;
+  --Dark-Green: #136c56;
+  --green-l: #a4cec0;
+  --gray: #32323c;
+
+  --smooth: ease-in-out 0.5s;
+
+  --dim1: -13px;
+  --dim2: -35px;
+
+  --dim3: 13px;
+  --dim4: 50%;
+
+  --color-black-09: #ffffffd9;
+  --color-neutral-solid-9: #ddddde;
+  --color-additional-1-9: #c6d0f0;
+  --color-additional-2-9: #aae8fd;
+  --color-additional-3-9: #aacdf2;
+  --color-additional-4-9: #b5b5b7;
+  --color-white-7: #03030a0f;
+  --color-black-08: #ffffff1a;
+  --color-neutral-solid-8: #b0b0b2;
+  --color-additional-1-8: #aab9e9;
+  --color-additional-2-8: #80ddfc;
+  --color-additional-3-8: #80b5ec;
+  --color-additional-1-6: #718ada;
+  --color-additional-2-6: #2bc6fa;
+  --color-additional-3-6: #2b83df;
+  --color-additional-4-6: #46474b;
+  --color-white-4: #03030a40;
+  --color-black-05: #ffffff40;
+  --color-neutral-solid-5: #565659;
+  --color-additional-1-5: #5572d3;
+  --color-additional-2-5: #01bbf9;
+  --color-additional-2-4: #0196c7;
+  --color-primary-1: #dbf5ec;
+  --color-primary-2: #b6ebd9;
+  --color-primary-3: #92e2c7;
+  --color-primary-4: #6dd8b4;
+  --color-primary-5: #49cea1;
+  --color-primary-6: #24c48e;
+  --color-primary-7: #1d9d72;
+  --color-primary: #24c48e;
+  --color-text-primary-main: #24c48e;
+  --color-primary-06: #24c48e;
+  --color-brand-primary: #24c48e;
+  --color-brand-primary-1: #dbf5ec;
+  --color-brand-primary-2: #b6ebd9;
+  --color-brand-primary-3: #92e2c7;
+  --color-brand-primary-4: #6dd8b4;
+  --color-brand-primary-5: #49cea1;
+  --color-brand-primary-6: #24c48e;
+}
+
+.modal_C {
+  position: fixed;
+  background-color: var(--bg_Gunmetal);
+  display: none;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  width: calc(100vw - 78px);
+  height: 100vh;
+  overflow: auto;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  transition: width 0.5s ease;
+}
+
+.Open_navbar .modal_C {
+  width: calc(100vw - 250px);
+  transition: width 0.5s ease;
+}
+/*                                                   == Phần hiển thị các thông số của xe trong control ==                                                             */
+
+.Part_Display {
+  display: flex;
+  height: 26%;
+  position: absolute;
+  background-color: var(--gray);
+  border-radius: 13px;
+  justify-content: center;
+  top: 10px;
+  left: 0;
+  right: 10px;
+}
+
+.Part_Display h4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 50px;
+  font-size: 2.5em;
+  color: var(--White_with);
+  z-index: 1;
+}
+
+/* Phần hiển thị icon xe  */
+
+.display_car {
+  /* background-color: #0196c7; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35%;
+  height: 100%;
+}
+.icon_car {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-l);
+  width: 160px;
+  height: 160px;
+  transform: translateY(10%);
+  right: 0px;
+}
+
+.icon_car img {
+  position: absolute;
+  width: 200px;
+  margin: auto;
+  transform: translateX(-7.5px);
+}
+
+.arrow {
+  position: absolute;
+  font-size: 22px;
+  color: var(--Aquamarine);
+}
+.arrow.up {
+  top: var(--dim3);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.arrow.up-right {
+  top: var(--dim3);
+  right: var(--dim3);
+  transform: rotate(-45deg);
+}
+.arrow.right {
+  top: 50%;
+  right: var(--dim3);
+  transform: translateY(-50%);
+}
+.arrow.down-right {
+  bottom: var(--dim3);
+  right: var(--dim3);
+  transform: rotate(45deg);
+}
+.arrow.down {
+  bottom: var(--dim3);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.arrow.down-left {
+  bottom: var(--dim3);
+  left: var(--dim3);
+  transform: rotate(135deg);
+}
+.arrow.left {
+  top: 50%;
+  left: var(--dim3);
+  transform: translateY(-50%);
+}
+.arrow.up-left {
+  top: var(--dim3);
+  left: var(--dim3);
+  transform: rotate(-135deg);
+}
+.arrow.tunr-right {
+  top: 42%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.arrow.tunr-left {
+  top: 42%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.display_stepcar {
+  position: absolute;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 20px;
+  display: grid;
+  gap: 13px;
+  margin: 35px;
+}
+
+/* = Phần hiển thị thông số phụ = */
+.display_home {
+  background-color: var(--color-neutral-solid-5);
+  position: absolute;
+  margin-top: 85px;
+  width: 370px;
+  height: 55%;
+  border-radius: 13px;
+}
+.status_1 {
+  position: absolute;
+  display: flex;
+  top: -34px;
+  width: 100%;
+  height: 30px;
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+}
+.connected {
+  background-color: var(--Aquamarine);
+}
+.disconnected {
+  background-color: var(--color-neutral-solid-5);
+  /* animation: blink-bg 1.5s infinite; */
+}
+/* @keyframes blink-bg {
+  0%,
+  100% {
+    background-color: red;
+  }
+  50% {
+    background-color: transparent;
+  }
+} */
+
+.warning-icon {
+  color: #f298f7;
+}
+.status-text {
+  margin-left: 5px; /* Thay đổi giá trị để điều chỉnh khoảng cách */
+}
+
+.status_2 {
+  display: flex;
+  margin: 4px 3px 3px 15px;
+  font-size: 16px;
+}
+/* = Phần hiển thị thông số cánh tay robot = */
+.display_arm {
+  background-color: #136c56;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35%;
+  height: 100%;
+  border-radius: 13px;
+}
+
+/*                                                                     == Phần điều khiển chính ==                                                                    */
+.Control_All {
+  position: absolute;
+  display: flex;
+  background-color: var(--gray);
+  top: 29%;
+  right: 10px;
+  left: 0;
+  bottom: 10px;
+  border-radius: 20px;
+}
+
+/* phần bảng điều khiển  */
+.navbar_control_axis {
+  display: flex;
+}
+.Control_panel {
+  background-color: var(--color-additional-4-6);
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 86%;
+  border-radius: 20px;
+}
+
+.navbar-controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
+  margin: 0 auto;
+  gap: 10px;
+  padding: 10px;
+}
+
+.navbar-controls .liner {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 98%;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #161616;
+  opacity: 0.2;
+}
+/* Định dạng cho các phần tử trong navbar */
+.navbar-controls li {
+  list-style-type: none;
+  color: var(--White_with);
+  text-align: center;
+  cursor: pointer;
+  width: 130px;
+  padding: 13px;
+  background-color: var(--bg_Gunmetal);
+  border-radius: 30px;
+  transition: background-color 0.3s;
+}
+
+.navbar-controls li:hover {
+  background-color: var(--Aquamarine);
+}
+
+#numberForm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar_car_axis {
+  background-color: var(--color-black-08);
+  align-items: center;
+  display: flex;
+  padding: 5px 10px 5px 5px;
+  border-radius: 40px;
+  gap: 2px;
+}
+
+.navbar_arm_axis {
+  background-color: var(--color-black-08);
+  align-items: center;
+  display: flex;
+  margin-left: 12px;
+  padding: 5px 10px 5px 5px;
+  border-radius: 40px;
+  gap: 2px;
+}
+/* Định dạng cho các thẻ label và input trong form */
+#numberForm label {
+  margin-right: 1px;
+  margin-left: 3px;
+  color: var(--White_with);
+}
+
+#numberForm input {
+  border: 1px solid var(--White_with);
+  border-radius: 5px;
+  width: 80px;
+  height: 50%;
+  background-color: var(--color-black-08);
+}
+
+/* Định dạng cho các button */
+#numberForm button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--bg_Gunmetal);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#numberForm button:hover {
+  background-color: var(--Aquamarine);
+}
+
+/* Định dạng cho thông báo lỗi */
+.error-message {
+  color: red;
+  display: none; /* Ẩn thông báo lỗi mặc định */
+}
+
+/*                                                              = Phần Quản lý lệnh =                                                                                 */
+.navbar_commend {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  bottom: 0;
+  width: 100%;
+  height: 14%;
+  background: var(--gray);
+  transition: height 0.8s ease-in-out;
+  border-radius: 0 0 20px 20px;
+  z-index: 10;
+}
+
+.arrow_menus {
+  position: absolute;
+  background-color: var(--gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -10px; /* Khoảng cách từ trên cùng của .navbar_commend */
+  left: 50%; /* Căn giữa theo chiều ngang */
+  transform: translateX(-50%); /* Đưa phần tử về giữa hoàn toàn */
+  width: 200px;
+  height: 20px;
+  border-radius: 10px;
+  border: 3.5px solid var(--color-additional-4-6);
+  transition: all 0.2s;
+  z-index: 100;
+}
+
+.navbar_commend.hide-control {
+  height: 440px;
+  transition: height 0.8s ease-in-out;
+  border-radius: 20px;
+}
+
+.arrow_menus:hover {
+  background-color: var(--Aquamarine);
+}
+
+.navbar_commend .res-image {
+  background-color: var(--gray);
+  position: absolute;
+  top: 120px;
+}
+
+/* == Phần các nút Controll == */
+
+/* CONTROL2 */
+/*                          Phần cột điều khiển 2                            */
+.Column_2 {
+  position: absolute;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  width: 150px;
+  left: 22%;
+  top: 25%;
+  display: flex;
+  flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+  align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+}
+.Button_1L {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Button_1L .circle {
+  width: 160px;
+  height: 160px;
+  border: 3px solid var(--color-neutral-solid-8); /* Thêm viền cho vòng tròn lớn */
+  border-radius: 35px;
+  transform: rotate(-45deg);
+}
+
+.Button_1L i {
+  position: absolute;
+  font-size: 50px;
+  transition: color 0.3s ease;
+}
+
+.Button_1L i:hover {
+  color: var(--Aquamarine);
+}
+
+/* 4 nút theo hướng lên, xuống, trái, phải */
+.Button_1L .fa-circle-chevron-up {
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Button_1L .fa-circle-chevron-down {
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.Button_1L .fa-circle-chevron-right {
+  right: 15%;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+.Button_1L .fa-circle-chevron-left {
+  left: 15%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Button_2L {
+  position: relative;
+  width: 200px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Button_2L .circle {
+  width: 190px;
+  height: 70px;
+  border: 3px solid var(--color-neutral-solid-8); /* Thêm viền cho vòng tròn lớn */
+  border-radius: 35px;
+}
+
+.Button_2L i {
+  position: absolute;
+  font-size: 50px;
+}
+
+.Button_2L i:hover {
+  color: var(--Aquamarine);
+}
+/* 4 nút theo hướng lên, xuống, trái, phải */
+
+.Button_2L .fa-circle-chevron-right {
+  right: 20%;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+.Button_2L .fa-circle-chevron-left {
+  left: 20%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* CONTROL4 */
+/*                              Phần cột điều khiển 4                               */
+.Column_4 {
+  position: absolute;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  width: 150px;
+  right: 22%;
+  top: 25%;
+  display: flex;
+  flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+  align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+}
+.Button_1R {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Button_1R .circle {
+  width: 160px;
+  height: 160px;
+  border: 3px solid var(--color-neutral-solid-8); /* Thêm viền cho vòng tròn lớn */
+  border-radius: 35px;
+  transform: rotate(-45deg);
+}
+
+.Button_1R i {
+  position: absolute;
+  font-size: 50px;
+  transition: color 0.3s ease;
+}
+
+.Button_1R i:hover {
+  color: var(--Aquamarine);
+}
+
+/* 4 nút theo hướng lên, xuống, trái, phải */
+.Button_1R .fa-circle-chevron-up {
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Button_1R .fa-circle-chevron-down {
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.Button_1R .fa-circle-chevron-right {
+  right: 15%;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+.Button_1R .fa-circle-chevron-left {
+  left: 15%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Button_2R {
+  position: relative;
+  width: 200px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Button_2R .circle {
+  width: 190px;
+  height: 70px;
+  border: 3px solid var(--color-neutral-solid-8); /* Thêm viền cho vòng tròn lớn */
+  border-radius: 35px;
+}
+
+.Button_2R i {
+  position: absolute;
+
+  font-size: 50px;
+}
+
+.Button_2R i:hover {
+  color: var(--Aquamarine);
+}
+/* 4 nút theo hướng lên, xuống, trái, phải */
+
+.Button_2R .fa-circle-chevron-right {
+  right: 20%;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+.Button_2R .fa-circle-chevron-left {
+  left: 20%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* CONTROL1 */
+/*                              Phần cột điều khiển 1                                */
+.Column_1s {
+  position: absolute;
+  width: auto;
+  height: auto;
+  left: 5px;
+  top: 21%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+}
+.Column_1 {
+  position: relative;
+  background-color: var(--gray);
+  width: 65px;
+  height: 330px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  transition: width 0.5s ease;
+}
+
+.Column_1s .arrow_narbar_C {
+  position: absolute;
+  right: -10px; /* Vị trí ra ngoài .Column_1 */
+  background: var(--gray);
+  text-align: center;
+  width: 20px;
+  height: 100px;
+  margin-bottom: 0;
+  border-radius: 18px;
+  border: 4px solid var(--color-additional-4-6);
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  justify-content: center;
+  overflow: visible;
+}
+
+.Column_1s .Column_1.Open_navbar_C {
+  width: 200px;
+  transition: width 0.5s ease;
+}
+
+.Column_1 .icon {
+  display: flex;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  margin-left: 8px;
+  font-size: 1.5em;
+  color: var(--gray);
+}
+
+.Column_1 .icon i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--White_with);
+  border-radius: 50%;
+}
+
+/* Các phần tử sẽ tự động căn giữa theo chiều ngang */
+.valueInput1,
+.valueInput2,
+.valueInput3 {
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.switch_1 {
+  margin-left: 75px;
+  margin-top: -105px;
+}
+.switch_2 {
+  margin-left: 75px;
+  margin-top: -45px;
+}
+/* tùy chọn lên xuống bên trái  */
+.valueInput1 {
+  position: absolute;
+  left: 65px;
+  width: 95px;
+  height: 36px;
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  transition: 0.5s;
+  margin: 0 auto;
+}
+
+.valueInput1 .next1 {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(135deg);
+  cursor: pointer;
+  opacity: 1;
+  transition: 0.5s;
+}
+.valueInput1 .prev1 {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(-45deg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#box1 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+#box1 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 36px;
+  color: var(--White_with);
+  font-size: 24px;
+  font-weight: 700;
+  user-select: none;
+  display: none;
+}
+#box1 span:nth-child(1) {
+  display: initial;
+}
+
+/* tùy chọn trái phải 1 bên trái  */
+.valueInput2 {
+  position: absolute;
+  left: 65px;
+  width: 95px;
+  height: 36px;
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  transition: 0.5s;
+  margin: 0 auto;
+}
+.valueInput2 .next2 {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(135deg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.valueInput2 .prev2 {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(-45deg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#box2 span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  line-height: 35px;
+  display: none;
+  color: var(--White_with);
+  font-size: 24px;
+  font-weight: 700;
+  user-select: none;
+}
+#box2 span:nth-child(1) {
+  display: initial;
+}
+
+/* tùy chọn trái phải 2 bên trái  */
+.valueInput3 {
+  position: absolute;
+  left: 65px;
+  width: 95px;
+  height: 36px;
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  transition: 0.5s;
+  margin: 0 auto;
+}
+
+.valueInput3 .next3 {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(135deg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.valueInput3 .prev3 {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(-45deg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#box3 span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  line-height: 35px;
+  display: none;
+  color: var(--White_with);
+  font-size: 24px;
+  font-weight: 700;
+  user-select: none;
+}
+#box3 span:nth-child(1) {
+  display: initial;
+}
+
+/* nút bật tắt 1 bên trái  */
+
+.switch_1 {
+  position: relative;
+  display: flex;
+  width: 70px;
+  height: 35px;
+  appearance: none;
+  background-color: var(--color-neutral-solid-8);
+  border-radius: 20px;
+}
+.switch_1::before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  background-color: var(--bg_Gunmetal);
+  border-radius: 50%;
+  transition: 0.25s cubic-bezier(0.25, -0.59, 0.82, 1.66);
+}
+.switch_1:checked {
+  background-color: var(--Aquamarine);
+}
+.switch_1:checked:before {
+  left: 35px;
+}
+/* nút bật tắt 2 bên trái  */
+.switch_2 {
+  position: relative;
+  display: flex;
+  width: 70px;
+  height: 35px;
+  appearance: none;
+  background-color: var(--color-neutral-solid-8);
+  border-radius: 20px;
+}
+.switch_2::before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  background-color: var(--bg_Gunmetal);
+  border-radius: 50%;
+  transition: 0.25s cubic-bezier(0.25, -0.59, 0.82, 1.66);
+}
+.switch_2:checked {
+  background-color: var(--Aquamarine);
+}
+.switch_2:checked:before {
+  left: 35px;
+}
+
+/* CONTROL5 */
+/*                           Phần cột điều khiển 5                       */
+.Column_5s {
+  position: absolute;
+  width: auto;
+  height: auto;
+  right: 5px;
+  top: 21%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.Column_5 {
+  position: relative;
+  background-color: var(--gray);
+  width: 65px;
+  height: 330px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  transition: width 0.5s ease;
+}
+
+.Column_5s .arrow_narbar_C1 {
+  position: absolute;
+  left: -10px; /* Vị trí ra ngoài .Column_1 */
+  background: var(--gray);
+  text-align: center;
+  width: 20px;
+  height: 100px;
+  margin-bottom: 0;
+  border-radius: 18px;
+  border: 4px solid var(--color-additional-4-6);
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  justify-content: center;
+  overflow: visible;
+}
+
+.Column_5s .Column_5.Open_navbar_C1 {
+  width: 200px; /* Giá trị ví dụ */
+  transition: width 0.5s ease; /* Thêm hiệu ứng chuyển đổi nếu cần */
+}
+/* .Column_5 li::before,
+.Column_5 li::after {
+  border: 0;
+  --border-radius: 5px;
+  content: "";
+  position: absolute;
+  width: var(--border-radius);
+  height: var(--border-radius);
+  background-color: var(--gray);
+  border-radius: 100vw;
+  right: 11px;
+}
+
+.Column_5 li::before {
+  border: 0;
+  bottom: calc(var(--border-radius) * -1.5);
+  border-radius: 0 100vw 0 0;
+  box-shadow: 2px -2px 0 2px var(--color-additional-4-6);
+}
+
+.Column_5 li::after {
+  border: 0;
+  top: calc(var(--border-radius) * -1);
+  border-radius: 0 0 0 50vw;
+  box-shadow: -6px 6px 0 6px var(--color-additional-4-6);
+}
+*/
+
+.Column_5 .icon {
+  display: flex;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  margin-right: 8px;
+  margin-left: 10px;
+  font-size: 1.5em;
+  color: var(--gray);
+  flex-direction: row-reverse;
+}
+
+.Column_5 .icon i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--White_with);
+  border-radius: 50%;
+}
+
+/* Các phần tử sẽ tự động căn giữa theo chiều ngang */
+.valueInput4,
+.valueInput5,
+.valueInput6 {
+  margin-bottom: 20px;
+  margin-right: 10px;
+  flex-direction: row-reverse;
+}
+
+/* tùy chọn lên xuống bên trái  */
+.valueInput4 {
+  position: absolute;
+  right: 65px;
+  width: 95px;
+  height: 36px;
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  transition: 0.5s;
+  margin: 0 auto;
+}
+
+.valueInput4 .next4 {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(135deg);
+  cursor: pointer;
+  opacity: 1;
+  transition: 0.5s;
+}
+.valueInput4 .prev4 {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(-45deg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#box4 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+#box4 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 36px;
+  color: var(--White_with);
+  font-size: 24px;
+  font-weight: 700;
+  user-select: none;
+  display: none;
+}
+#box4 span:nth-child(1) {
+  display: initial;
+}
+
+/* tùy chọn trái phải 1 bên trái  */
+.valueInput5 {
+  position: absolute;
+  right: 65px;
+  width: 95px;
+  height: 36px;
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  transition: 0.5s;
+  margin: 0 auto;
+}
+.valueInput5 .next5 {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(135deg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.valueInput5 .prev5 {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(-45deg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#box5 span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  line-height: 35px;
+  display: none;
+  color: var(--White_with);
+  font-size: 24px;
+  font-weight: 700;
+  user-select: none;
+}
+#box5 span:nth-child(1) {
+  display: initial;
+}
+
+/* tùy chọn trái phải 2 bên trái  */
+.valueInput6 {
+  position: absolute;
+  right: 65px;
+  width: 95px;
+  height: 36px;
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  transition: 0.5s;
+  margin: 0 auto;
+}
+
+.valueInput6 .next6 {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(135deg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.valueInput6 .prev6 {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 4.5px solid var(--Aquamarine);
+  border-left: 4.5px solid var(--Aquamarine);
+  z-index: 1;
+  transform: translateY(-50%) rotate(-45deg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#box6 span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  line-height: 35px;
+  display: none;
+  color: var(--White_with);
+  font-size: 24px;
+  font-weight: 700;
+  user-select: none;
+}
+#box6 span:nth-child(1) {
+  display: initial;
+}
+
+/* nút bật tắt 1 bên trái  */
+
+.switch_3 {
+  position: absolute;
+  right: 75px;
+  display: flex;
+  width: 70px;
+  height: 35px;
+  appearance: none;
+  background-color: var(--color-neutral-solid-8);
+  border-radius: 20px;
+  margin-top: -105px;
+}
+.switch_3::before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  background-color: var(--bg_Gunmetal);
+  border-radius: 50%;
+  transition: 0.25s cubic-bezier(0.25, -0.59, 0.82, 1.66);
+}
+.switch_3:checked {
+  background-color: var(--Aquamarine);
+}
+.switch_3:checked:before {
+  left: 35px;
+}
+/* nút bật tắt 2 bên trái  */
+.switch_4 {
+  position: absolute;
+  right: 75px;
+  display: flex;
+  width: 70px;
+  height: 35px;
+  appearance: none;
+  background-color: var(--color-neutral-solid-8);
+  border-radius: 20px;
+  margin-top: -45px;
+}
+.switch_4::before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  background-color: var(--bg_Gunmetal);
+  border-radius: 50%;
+  transition: 0.25s cubic-bezier(0.25, -0.59, 0.82, 1.66);
+}
+.switch_4:checked {
+  background-color: var(--Aquamarine);
+}
+.switch_4:checked:before {
+  left: 35px;
+}
+
+/* CONTROL3 */
+/*                      Phần cột 3                         */
+
+.Column_3 {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 270px;
+  height: 320px;
+  border: 4px solid var(--gray);
+  transform: translateX(-50%);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Căn từ trên xuống */
+  padding-top: 8px; /* Khoảng cách từ trên cùng */
+}
+
+.Row_1 {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cột đều nhau */
+  gap: 8px; /* Khoảng cách giữa các nút */
+  width: 100%; /* Chiếm toàn bộ chiều rộng của Column_3 */
+}
+
+.Box_column_3 {
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  list-style-type: none;
+  width: 100px;
+  height: 40px;
+  background-color: var(--green-l);
+  border-radius: 10px;
+  /* border: 3.5px solid var(--gray); */
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto; /* Căn giữa phần tử trong lưới */
+}
+
+.Box_column_3:hover {
+  background-color: var(--Aquamarine);
+}
+
+.Column_3 .Row_2 {
+  position: absolute;
+  margin-top: 150px; /* Khoảng cách giữa Row_1 và Row_2 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 240px;
+  height: 145px;
+  border-radius: 10px;
+  background-color: var(--gray);
+}
+
+.Text_c {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.Text_c h6,
+.Text_c h5 {
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  height: 30px; /* Điều chỉnh chiều cao để phù hợp với nội dung */
+  width: 47%;
+  font-size: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center; /* Căn giữa chữ theo chiều ngang */
+  align-items: center; /* Căn giữa chữ theo chiều dọc */
+  background-color: #01bbf9; /* Background mặc định */
+}
+
+.Text_c h6.active,
+.Text_c h5.active {
+  background-color: #01bbf9; /* Background khi được chọn */
+}
+
+.Content_S,
+.Content_SC {
+  display: none; /* Ẩn nội dung theo mặc định */
+  width: 100%;
+  height: 70%;
+  margin-top: 10px;
+  /* background-color: #136c56; */
+}
+
+.Content_S.active,
+.Content_SC.active {
+  display: block; /* Hiển thị nội dung khi được chọn */
+}
+
+/* SCALE */
+/* --------------------------------------------==== Scale phù hợp với màn hình ngang điện thoại  ====------------------------------------------------------------ */
+@media (max-width: 1000px) {
+  .modal_C {
+    width: calc(100vw - 56px);
+    height: 100vh;
+    transition: width 0.5s ease;
+  }
+
+  .Open_navbar .modal_C {
+    width: calc(100vw - 200px);
+    transition: width 0.5s ease;
+  }
+
+  .modal_C h4 {
+    font-size: 2.6em;
+  }
+
+  span {
+    width: 8px;
+    height: 30px;
+    margin: 4.5px;
+  }
+  .Part_Display h4 {
+    display: none;
+  }
+
+  /* = Phần hiển thị thông số phụ = */
+  .display_home {
+    margin-top: 40px;
+    width: 28%;
+    height: 60%;
+  }
+  .status_1 {
+    display: flex;
+    top: -34px;
+    width: 100%;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .warning-icon {
+    color: #f298f7;
+  }
+  .status-text {
+    margin-left: 5px; /* Thay đổi giá trị để điều chỉnh khoảng cách */
+  }
+
+  .status_2 {
+    display: flex;
+    margin: 2px 3px 3px 15px;
+    font-size: 16px;
+  }
+
+  /* Phần hiển thị icon xe  */
+  .display_car {
+    /* background-color: #0196c7; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35%;
+    height: 100%;
+  }
+  .icon_car {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green-l);
+    width: 130px;
+    height: 130px;
+    top: -8px;
+    right: 20px;
+  }
+
+  .icon_car img {
+    position: absolute;
+    width: 120px;
+    margin: auto;
+    transform: translateX(-7px);
+  }
+
+  .arrow {
+    position: absolute;
+    font-size: 16px;
+    color: var(--while);
+  }
+  .display_stepcar {
+    position: absolute;
+    top: -18%;
+    left: -5%;
+    font-size: 13px;
+    display: grid;
+    gap: 6px;
+  }
+
+  /* phần bảng điều khiển Gohome và di chuyển theo thông số có sẵn  */
+  .navbar-controls {
+    height: 40px;
+  }
+  /* Định dạng cho các phần tử trong navbar */
+  .navbar-controls li {
+    width: 80px;
+    padding: 8px;
+    font-size: 10px;
+  }
+
+  .navbar_car_axis,
+  .navbar_arm_axis {
+    background-color: var(--color-black-08);
+    display: flex;
+    padding: 5px 10px 5px 5px;
+    margin-left: 8px;
+    border-radius: 40px;
+    gap: 2px;
+  }
+
+  #numberForm input {
+    width: 40px;
+    height: 60%;
+  }
+
+  /* Định dạng cho các button */
+  #numberForm button {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  /* Phần cột 1 trong bẳng điều khiên  */
+  .Column_1s {
+    top: 15%;
+    z-index: 100;
+  }
+  .Column_1 {
+    width: 50px;
+    height: 195px;
+    border-radius: 15px;
+    transition: width 0.5s ease;
+  }
+
+  .Column_1s .arrow_narbar_C {
+    right: -8px;
+    width: 16px;
+    height: 70px;
+    border: 3px solid var(--color-additional-4-6);
+  }
+
+  .Column_1s .Column_1.Open_navbar_C {
+    width: 140px;
+    transition: width 0.5s ease;
+  }
+
+  .Column_1 .icon {
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-left: 8px;
+    font-size: 1.1em;
+  }
+
+  .Column_1 .icon i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background-color: var(--White_with);
+    border-radius: 50%;
+  }
+
+  /* Các phần tử sẽ tự động căn giữa theo chiều ngang */
+
+  .switch_1 {
+    margin-left: 55px;
+    margin-top: -70px;
+  }
+  .switch_2 {
+    margin-left: 55px;
+    margin-top: -33px;
+  }
+  /* tùy chọn lên xuống bên trái  */
+  .valueInput1,
+  .valueInput2,
+  .valueInput3 {
+    margin-bottom: 10px;
+    margin-left: 5px;
+    left: 45px;
+    width: 75px;
+    height: 28px;
+    border: 1.5px solid rgba(255, 255, 255, 1);
+  }
+
+  .valueInput1 .next1,
+  .valueInput2 .next2,
+  .valueInput3 .next3 {
+    top: 35%;
+    right: 8px;
+    width: 10px;
+    height: 10px;
+    border-top: 3.6px solid var(--Aquamarine);
+    border-left: 3.6px solid var(--Aquamarine);
+  }
+  .valueInput1 .prev1,
+  .valueInput2 .prev2,
+  .valueInput3 .prev3 {
+    top: 35%;
+    left: 8px;
+    width: 10px;
+    height: 10px;
+    border-top: 3.6px solid var(--Aquamarine);
+    border-left: 3.6px solid var(--Aquamarine);
+  }
+
+  #box1,
+  #box2,
+  #box3 {
+    display: flex;
+    justify-content: center;
+  }
+  #box1 span,
+  #box2 span,
+  #box3 span {
+    line-height: 35px;
+    display: none;
+    font-size: 20px;
+    margin-top: -3px;
+  }
+
+  /* nút bật tắt 1 bên trái  */
+
+  .switch_1,
+  .switch_2 {
+    position: relative;
+    display: flex;
+    width: 60px;
+    height: 28px;
+    appearance: none;
+    background-color: var(--color-neutral-solid-8);
+    border-radius: 20px;
+  }
+  .switch_1::before,
+  .switch_2::before {
+    content: "";
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 2.4px;
+    left: 3px;
+    background-color: var(--bg_Gunmetal);
+    border-radius: 50%;
+    transition: 0.25s cubic-bezier(0.25, -0.59, 0.82, 1.66);
+  }
+  .switch_1:checked,
+  .switch_2:checked {
+    background-color: var(--Aquamarine);
+  }
+  .switch_1:checked:before,
+  .switch_2:checked:before {
+    left: 35px;
+  }
+
+  /*                           Phần cột 5 trong bẳng điều khiên                            */
+  .Column_5s {
+    top: 15%;
+    z-index: 100;
+  }
+  .Column_5 {
+    width: 50px;
+    height: 195px;
+    border-radius: 15px;
+    transition: width 0.5s ease;
+  }
+
+  .Column_5s .arrow_narbar_C1 {
+    left: -8px;
+    width: 16px;
+    height: 70px;
+    border: 3px solid var(--color-additional-4-6);
+  }
+
+  .Column_5s .Column_5.Open_navbar_C1 {
+    width: 140px;
+    transition: width 0.5s ease;
+  }
+
+  .Column_5 .icon {
+    display: flex;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-right: -15px;
+    margin-left: -7px;
+    font-size: 1.1em;
+  }
+
+  .Column_5 .icon i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background-color: var(--White_with);
+    border-radius: 50%;
+  }
+
+  /* Các phần tử sẽ tự động căn giữa theo chiều ngang */
+
+  .switch_3 {
+    margin-top: -70px;
+    margin-right: -18px;
+  }
+  .switch_4 {
+    margin-top: -33px;
+    margin-right: -18px;
+  }
+  /* tùy chọn lên xuống bên trái  */
+  .valueInput4,
+  .valueInput5,
+  .valueInput6 {
+    margin-bottom: 10px;
+    margin-right: 5px;
+    right: 45px;
+    width: 75px;
+    height: 28px;
+    border: 1.5px solid rgba(255, 255, 255, 1);
+  }
+
+  .valueInput4 .next4,
+  .valueInput5 .next5,
+  .valueInput6 .next6 {
+    top: 35%;
+    right: 8px;
+    width: 10px;
+    height: 10px;
+    border-top: 3.6px solid var(--Aquamarine);
+    border-left: 3.6px solid var(--Aquamarine);
+  }
+  .valueInput4 .prev4,
+  .valueInput5 .prev5,
+  .valueInput6 .prev6 {
+    top: 35%;
+    left: 8px;
+    width: 10px;
+    height: 10px;
+    border-top: 3.6px solid var(--Aquamarine);
+    border-left: 3.6px solid var(--Aquamarine);
+  }
+
+  #box4,
+  #box5,
+  #box6 {
+    display: flex;
+    justify-content: center;
+  }
+  #box4 span,
+  #box5 span,
+  #box6 span {
+    position: relative;
+    line-height: 35px;
+    display: none;
+    font-size: 20px;
+    margin-top: -3px;
+  }
+
+  /* nút bật tắt 1 bên trái  */
+
+  .switch_3,
+  .switch_4 {
+    position: absolute;
+    display: flex;
+    width: 60px;
+    height: 28px;
+    appearance: none;
+    background-color: var(--color-neutral-solid-8);
+    border-radius: 20px;
+  }
+  .switch_3::before,
+  .switch_4::before {
+    content: "";
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 2.4px;
+    left: 3px;
+    background-color: var(--bg_Gunmetal);
+    border-radius: 50%;
+    transition: 0.25s cubic-bezier(0.25, -0.59, 0.82, 1.66);
+  }
+  .switch_3:checked,
+  .switch_4:checked {
+    background-color: var(--Aquamarine);
+  }
+  .switch_3:checked:before,
+  .switch_4:checked:before {
+    left: 35px;
+  }
+
+  /*                      Phần cột 3                         */
+
+  .Column_3 {
+    top: 50px;
+    left: 50%;
+    width: 200px;
+    height: 180px;
+    border: 3px solid var(--bg_Gunmetal);
+    border-radius: 15px;
+    padding-top: 7px;
+  }
+
+  .Row_1 {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  .Box_column_3 {
+    width: 80px;
+    height: 26px;
+    background-color: var(--green-l);
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .Column_3 .Row_2 {
+    position: absolute;
+    margin-top: 100px; /* Khoảng cách giữa Row_1 và Row_2 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 180px;
+    height: 35%;
+    border-radius: 10px;
+    background-color: var(--gray);
+  }
+
+  .Text_c {
+    display: flex;
+    gap: 11px;
+    justify-content: center;
+    margin-top: 5px;
+    width: 100%;
+  }
+
+  .Text_c h6,
+  .Text_c h5 {
+    height: 20px; /* Điều chỉnh chiều cao để phù hợp với nội dung */
+    width: 42%;
+    font-size: 10px;
+    border-radius: 6px;
+  }
+
+  .Text_c h6.active,
+  .Text_c h5.active {
+    background-color: #01bbf9; /* Background khi được chọn */
+  }
+
+  .Content_S,
+  .Content_SC {
+    display: none; /* Ẩn nội dung theo mặc định */
+    width: 100%;
+    height: 70%;
+    margin-top: 10px;
+    /* background-color: #136c56; */
+  }
+
+  .Content_S.active,
+  .Content_SC.active {
+    display: block; /* Hiển thị nội dung khi được chọn */
+  }
+
+  /*                          Phần cột điều khiển 2                            */
+  .Column_2 {
+    width: 120px;
+    left: 14%;
+    top: 20%;
+  }
+  .Button_1L {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Button_1L .circle {
+    width: 110px;
+    height: 110px;
+    border: 2px solid var(--color-neutral-solid-8); /* Thêm viền cho vòng tròn lớn */
+    border-radius: 25px;
+    transform: rotate(-45deg);
+  }
+
+  .Button_1L i,
+  .Button_2L i {
+    font-size: 36px;
+    transition: color 0.3s ease;
+  }
+  /* 4 nút theo hướng lên, xuống, trái, phải */
+  .Button_1L .fa-circle-chevron-up {
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .Button_1L .fa-circle-chevron-down {
+    bottom: 12%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+
+  .Button_1L .fa-circle-chevron-right {
+    right: 12%;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  .Button_1L .fa-circle-chevron-left {
+    left: 12%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .Button_2L {
+    width: 130px;
+    height: 100px;
+  }
+
+  .Button_2L .circle {
+    width: 130px;
+    height: 45px;
+    border: 2px solid var(--color-neutral-solid-8); /* Thêm viền cho vòng tròn lớn */
+    border-radius: 25px;
+  }
+
+  .Button_2L i:hover {
+    color: var(--Aquamarine);
+  }
+  /* 4 nút theo hướng lên, xuống, trái, phải */
+
+  .Button_2L .fa-circle-chevron-right {
+    right: 18%;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  .Button_2L .fa-circle-chevron-left {
+    left: 18%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /*                          Phần cột điều khiển 4                            */
+  .Column_4 {
+    width: 120px;
+    right: 14%;
+    top: 20%;
+  }
+  .Button_1R {
+    width: 110px;
+    height: 110px;
+  }
+
+  .Button_1R .circle {
+    width: 110px;
+    height: 110px;
+    border: 2px solid var(--color-neutral-solid-8); /* Thêm viền cho vòng tròn lớn */
+    border-radius: 25px;
+    transform: rotate(-45deg);
+  }
+
+  .Button_1R i,
+  .Button_2R i {
+    font-size: 36px;
+    transition: color 0.3s ease;
+  }
+  /* 4 nút theo hướng lên, xuống, trái, phải */
+  .Button_1R .fa-circle-chevron-up {
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .Button_1R .fa-circle-chevron-down {
+    bottom: 12%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+
+  .Button_1R .fa-circle-chevron-right {
+    right: 12%;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  .Button_1R .fa-circle-chevron-left {
+    left: 12%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .Button_2R {
+    width: 130px;
+    height: 100px;
+  }
+
+  .Button_2R .circle {
+    width: 130px;
+    height: 45px;
+    border: 2px solid var(--color-neutral-solid-8); /* Thêm viền cho vòng tròn lớn */
+    border-radius: 25px;
+  }
+  .Button_2R i {
+    position: absolute;
+    font-size: 36px;
+  }
+  /* 4 nút theo hướng lên, xuống, trái, phải */
+
+  .Button_2R .fa-circle-chevron-right {
+    right: 18%;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  .Button_2R .fa-circle-chevron-left {
+    left: 18%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /*                                                              = Phần Quản lý lệnh =                                                                                 */
+  .navbar_commend {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    bottom: 0;
+    width: 100%;
+    height: 14%;
+    background: var(--gray);
+    transition: height 0.8s ease-in-out;
+    border-radius: 0 0 20px 20px;
+    z-index: 1000;
+  }
+
+  .arrow_menus {
+    position: absolute;
+    background-color: var(--gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -12px; /* Khoảng cách từ trên cùng của .navbar_commend */
+    left: 50%; /* Căn giữa theo chiều ngang */
+    transform: translateX(-50%); /* Đưa phần tử về giữa hoàn toàn */
+    width: 200px;
+    height: 12px;
+    border-radius: 12px 12px 0 0;
+    transition: all 0.2s;
+    z-index: 6;
+  }
+
+  .arrow_menus span {
+    position: absolute;
+    width: 150px;
+    height: 5px;
+    top: 50%; /* Căn giữa theo chiều dọc */
+    left: 50%; /* Căn giữa theo chiều ngang */
+    transform: translate(-50%, -50%); /* Đưa phần tử về giữa hoàn toàn */
+    background-color: var(--green-l);
+    border-radius: 5px;
+  }
+
+  .navbar_commend.hide-control {
+    height: 240px;
+    transition: height 0.8s ease-in-out;
+    border-radius: 20px;
+  }
+
+  .arrow_menus span:hover {
+    background-color: var(--Aquamarine);
+  }
+
+  .navbar_commend .res-image {
+    background-color: var(--gray);
+    position: absolute;
+    top: 120px;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"name": "Code_RX_Car_ESP",
+		"path": "../../../../../PlatformIO/Projects/Code_RX_Car_ESP"
+	},
+	{
+		"name": "CodeRx_Car",
+		"path": "../CodeRx_Car"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Wed_Control",
+    "editor.formatOnSave": true
+  }
+}

@@ -1,0 +1,449 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Ngăn không cho cuộn trang */
+}
+
+img {
+  max-width: 100%;
+  width: 71%;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%; /* Chiều rộng bằng toàn bộ chiều rộng màn hình */
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+:root {
+  --bg_Gunmetal: #232529;
+  --Aquamarine: #24c48e;
+  --White_with: #ffffffd9;
+  --Very_Light: #ffffff1a;
+
+  --green_1: #24c48e;
+  --while: #ffffff;
+  --Dark-Green: #136c56;
+  --green-l: #a4cec0;
+  --gray: #32323c;
+
+  --smooth: ease-in-out 0.5s;
+
+  --dim1: -13px;
+  --dim2: -35px;
+
+  --dim3: 8px;
+  --dim4: 50%;
+
+  --color-black-09: #ffffffd9;
+  --color-neutral-solid-9: #ddddde;
+  --color-additional-1-9: #c6d0f0;
+  --color-additional-2-9: #aae8fd;
+  --color-additional-3-9: #aacdf2;
+  --color-additional-4-9: #b5b5b7;
+  --color-white-7: #03030a0f;
+  --color-black-08: #ffffff1a;
+  --color-neutral-solid-8: #b0b0b2;
+  --color-additional-1-8: #aab9e9;
+  --color-additional-2-8: #80ddfc;
+  --color-additional-3-8: #80b5ec;
+  --color-additional-1-6: #718ada;
+  --color-additional-2-6: #2bc6fa;
+  --color-additional-3-6: #2b83df;
+  --color-additional-4-6: #46474b;
+  --color-white-4: #03030a40;
+  --color-black-05: #ffffff40;
+  --color-neutral-solid-5: #565659;
+  --color-additional-1-5: #5572d3;
+  --color-additional-2-5: #01bbf9;
+  --color-additional-2-4: #0196c7;
+  --color-primary-1: #dbf5ec;
+  --color-primary-2: #b6ebd9;
+  --color-primary-3: #92e2c7;
+  --color-primary-4: #6dd8b4;
+  --color-primary-5: #49cea1;
+  --color-primary-6: #24c48e;
+  --color-primary-7: #1d9d72;
+  --color-primary: #24c48e;
+  --color-text-primary-main: #24c48e;
+  --color-primary-06: #24c48e;
+  --color-brand-primary: #24c48e;
+  --color-brand-primary-1: #dbf5ec;
+  --color-brand-primary-2: #b6ebd9;
+  --color-brand-primary-3: #92e2c7;
+  --color-brand-primary-4: #6dd8b4;
+  --color-brand-primary-5: #49cea1;
+  --color-brand-primary-6: #24c48e;
+}
+/* Tùy chỉnh thanh cuộn cho tất cả trình duyệt */
+::-webkit-scrollbar {
+  width: 6px; /* Độ rộng của thanh cuộn */
+  background-color: #f1f1f1; /* Màu nền của thanh cuộn */
+  border-radius: 10px; /* Bo góc */
+}
+::-webkit-scrollbar:hover {
+  width: 12px; /* Độ rộng của thanh cuộn */
+  /* Màu của thanh cuộn khi hover */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary-5); /* Màu của phần thanh cuộn */
+  border-radius: 10px; /* Bo góc */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(
+    --color-brand-primary-3
+  ); /* Màu của thanh cuộn khi hover */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--White_with); /* Màu nền của đường ray thanh cuộn */
+  border-radius: 10px; /* Bo góc */
+}
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 150vh;
+  background: var(--bg_Gunmetal);
+}
+
+.user_layout {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+/* ----------------------------------------------------------------- ===Thanh navbar menu === ------------------------------------------------------------------------ */
+nav {
+  position: fixed;
+  top: 0;
+  width: 70px;
+  height: 100%;
+  background: var(--bg_Gunmetal);
+  display: flex;
+  padding: 0;
+  z-index: 5;
+  transition: ease-in-out 0.5s;
+}
+
+nav ul li a {
+  margin-left: 2px;
+  margin-right: 2px;
+  height: 65px;
+  color: var(--green-l);
+  font-size: 1.8em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 20px;
+  padding: linear 0, 5s;
+  white-space: nowrap;
+}
+
+nav ul {
+  width: 100%;
+  list-style: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-top: 50px; /* Điều chỉnh để các chữ nằm giữa */
+}
+
+nav ul li:last-child {
+  margin-top: auto;
+  margin-bottom: 10px; /* Thay đổi giá trị này theo ý muốn */
+}
+
+nav ul li a icon_i {
+  margin-left: -6px;
+  margin-right: 22px;
+  color: var(--green-l);
+  font-size: 1.2em;
+  transition: linear 0.2s;
+}
+
+.Open_navbar nav {
+  width: 240px;
+  transition: ease-in-out 0.5s;
+}
+
+.Close_navbar.open_navbar icon_i {
+  transform: rotate(180deg); /* Xoay 180 độ */
+  transform-origin: center; /* Xoay quanh tâm của phần tử */
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Khi hover vào liên kết hoặc icon */
+
+nav .open_navbar :hover,
+nav ul li a:hover icon_i,
+nav ul li a icon_i:hover,
+nav ul li a icon_i:hover + span {
+  color: var(--Aquamarine);
+  transition: 0.3s ease, color 0.3s ease, transform 0.3s ease-in-out;
+}
+
+nav ul li a icon_i :checked {
+  color: var(--Aquamarine);
+  transition: 0.3s ease, color 0.3s ease, transform 0.3s ease-in-out;
+}
+
+nav .open_navbars:hover,
+nav ul li a:hover,
+nav ul li a icon_i:hover + span {
+  background-color: var(--gray);
+  transition: 0.3s ease, color 0.3s ease, transform 0.3s ease-in-out;
+}
+
+/* --------------------------------------------==== Scale phù hợp với màn hình ngang điện thoại  ====------------------------------------------------------------ */
+@media (min-width: 500px) {
+  .rotary_phone {
+    display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  /* === Phầnn hiển thị Narbar === */
+
+  nav {
+    position: fixed;
+    top: 0;
+    width: 55px;
+    /* background-color: #0196c7; */
+  }
+
+  nav ul li a {
+    margin-left: 2px;
+    margin-right: 2px;
+    height: 52px;
+    color: var(--green-l);
+    font-size: 1.4em;
+    padding: 23px;
+  }
+
+  nav ul li a icon_i {
+    margin-left: -2.5px;
+  }
+
+  nav ul li a {
+    align-items: baseline;
+    font-size: 1.4em;
+    padding: 13px;
+  }
+
+  .Open_navbar nav {
+    width: 200px;
+    transition: ease-in-out 0.5s;
+  }
+
+  /* === Phần hiển thị menu Home === */
+  .banner_heading {
+    text-align: initial;
+    margin: 0;
+    margin-top: 10px;
+  }
+  .banner_img {
+    width: 80%;
+  }
+
+  .banner_heading {
+    position: relative;
+    padding-left: 1em;
+    max-width: 55%;
+    margin-left: 50px;
+    text-align: center;
+  }
+
+  .banner_heading h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5em;
+  }
+
+  .banner_heading p {
+    font-size: 0.8rem;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+  }
+
+  /* == Phần hiển thị menu setting == */
+  .Setting_content {
+    margin: 8% auto;
+    width: 640px;
+    border-radius: 13px;
+    min-height: 280px;
+  }
+  .Setting_content h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .close-btn {
+    top: 5px;
+    right: 8px;
+    font-size: 20px;
+  }
+  .Title {
+    border-radius: 20px 20px 0 0;
+    height: 60px;
+  }
+
+  .Setting_header {
+    gap: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .Setting_header li {
+    width: 200px;
+    height: 30px;
+    border-radius: 0.6rem 0.6rem 0 0;
+  }
+
+  .Setting_header li.active {
+    background: var(--green-l);
+  }
+
+  .Setting_header li.active::before,
+  .Setting_header li.active::after {
+    --border-radius: 0.6rem;
+    width: var(--border-radius);
+    height: var(--border-radius);
+    background: var(--gray);
+    border-radius: 100vw;
+    bottom: 0;
+  }
+
+  .Setting_header li.active::before {
+    left: calc(var(--border-radius) * -1);
+    border-radius: 0 0 100vw 0;
+    box-shadow: 6px 6px 0 6px var(--green-l);
+  }
+
+  .Setting_header li.active::after {
+    right: calc(var(--border-radius) * -1);
+    border-radius: 0 0 0 50vw;
+    box-shadow: -6px 6px 0 6px var(--green-l);
+  }
+
+  .actions {
+    bottom: 4px;
+    right: 4px;
+    gap: 3px;
+  }
+
+  .actions button {
+    padding: 3px 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.5s;
+  }
+}
+
+/* === Scale phù hợp với màn hình dọc điện thoại  === */
+@media (max-width: 499px) {
+  html,
+  body {
+    background: var(--green); /* Đặt màu nền cho màn hình nhỏ hơn 500px */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Ẩn tất cả các phần tử trong body ngoại trừ div.rotary_phone */
+  body * {
+    display: none;
+  }
+
+  /* Hiển thị div.rotary_phone và căn giữa nội dung */
+  .rotary_phone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Đảm bảo căn giữa cả chiều dọc */
+    text-align: center;
+    color: #fff;
+    height: 100vh;
+    width: 100vw; /* Đảm bảo rằng chiều rộng của phần tử là 100% viewport width */
+    position: relative; /* Để z-index hoạt động */
+  }
+
+  .rotary_phone_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Đảm bảo căn giữa cả chiều dọc */
+    text-align: center;
+    color: #fff;
+    height: 100vh;
+    width: 100vw; /* Đảm bảo rằng chiều rộng của phần tử là 100% viewport width */
+    z-index: 3;
+    position: absolute; /* Để căn chỉnh chính xác */
+    top: 0;
+    left: 0;
+  }
+
+  .large-icon {
+    font-size: 4rem; /* Kích thước lớn cho biểu tượng xoay */
+    animation: rotate-large 6s linear infinite; /* Xoay liên tục 2 giây cho một vòng */
+  }
+
+  @keyframes rotate-large {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    60% {
+      transform: rotate(180deg);
+    }
+    90% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes rotate-phone {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    60% {
+      transform: rotate(180deg);
+    }
+    90% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .phone-icon {
+    font-size: 15rem;
+    animation: rotate-phone 6s linear infinite; /* Điều chỉnh thời gian nếu cần */
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+}
