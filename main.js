@@ -1,35 +1,98 @@
 // ------------------------------------------------------------ Gửi giá trị từ wed về để điều khiển xe (ESP32-S3) ------------------------------------------------//
 
-const webSocket = new WebSocket("ws://192.168.44.36:81/"); // Đổi IP này thành IP của ESP32 của bạn
+let webSocket;
+const ipBtn = document.getElementById("ipBtn");
+const controlBtn = document.getElementById("controlBtn");
+const statusDiv = document.getElementById("status");
+const ipInput = document.getElementById("ipInput");
+const errorMessage = document.getElementById("errorMessage");
 
-webSocket.onopen = () => {
-  console.log("WebSocket is connected.");
-};
+// Hàm kiểm tra định dạng IP
+function isValidIP(ip) {
+  const regex =
+    /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+  return regex.test(ip);
+}
 
-webSocket.onmessage = (event) => {
-  console.log("Received:", event.data);
-};
+// Sự kiện lắng nghe cho ô nhập địa chỉ IP
+ipInput.addEventListener("input", () => {
+  errorMessage.style.display = "none"; // Ẩn thông báo lỗi khi người dùng nhập
+});
 
-webSocket.onclose = () => {
-  console.log("WebSocket is disconnected.");
-};
+// Sự kiện lắng nghe cho nút IP
+ipBtn.addEventListener("click", () => {
+  const ipAddress = ipInput.value;
 
-function sendCommand(command) {
-  if (webSocket.readyState === WebSocket.OPEN) {
-    webSocket.send(command);
-    console.log(`Sent command: ${command}`);
+  // Kiểm tra địa chỉ IP có hợp lệ không
+  if (!isValidIP(ipAddress)) {
+    ipInput.classList.remove("valid");
+    ipInput.classList.add("invalid");
+    errorMessage.style.display = "block";
+    return;
+  }
+
+  ipInput.classList.remove("invalid");
+  ipInput.classList.add("valid");
+  errorMessage.style.display = "none";
+
+  const wsUrl = `ws://${ipAddress}:81/`;
+  webSocket = new WebSocket(wsUrl);
+
+  webSocket.onopen = () => {
+    statusDiv.textContent = "Status: Connected";
+    controlBtn.disabled = false;
+  };
+
+  webSocket.onclose = () => {
+    statusDiv.textContent = "Status: Disconnected";
+    controlBtn.disabled = true;
+  };
+
+  webSocket.onerror = (error) => {
+    console.error("WebSocket Error: ", error);
+    statusDiv.textContent = "Status: Error";
+  };
+});
+
+// Sự kiện lắng nghe cho nút điều khiển
+controlBtn.addEventListener("click", () => {
+  if (webSocket && webSocket.readyState === WebSocket.OPEN) {
+    webSocket.send("start_control");
+    console.log("Sent command: start_control");
   } else {
     console.log("WebSocket is not open.");
   }
-}
+});
 
-function sendSwitchState(id, state) {
-  const command = `${id}:${state}`;
-  sendCommand(command);
-}
+// const webSocket = new WebSocket("ws://192.168.44.36:81/"); // Đổi IP này thành IP của ESP32 của bạn
 
-// ---------------------------------------------------------------- Phần cài đặt --------------------------------------------------------------------------
+// webSocket.onopen = () => {
+//   console.log("WebSocket is connected.");
+// };
 
+// webSocket.onmessage = (event) => {
+//   console.log("Received:", event.data);
+// };
+
+// webSocket.onclose = () => {
+//   console.log("WebSocket is disconnected.");
+// };
+
+// function sendCommand(command) {
+//   if (webSocket.readyState === WebSocket.OPEN) {
+//     webSocket.send(command);
+//     console.log(`Sent command: ${command}`);
+//   } else {
+//     console.log("WebSocket is not open.");
+//   }
+// }
+
+// function sendSwitchState(id, state) {
+//   const command = `${id}:${state}`;
+//   sendCommand(command);
+// }
+
+// ------------------------------------------------------------ Phần cài đặt 1 ------------------------------------------------//
 const tabs = document.querySelectorAll(".sidebar ul li");
 const sections = document.querySelectorAll(".content-section");
 
@@ -59,22 +122,8 @@ themeToggle.addEventListener("change", function () {
     themeIcon.classList.add("fa-sun");
   }
 });
-//
-//
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// Thêm các mũi tên để chỉnh số trong cài đặt
 //
 let set_device = 0; // Biến để lưu giá trị tùy chọn
 
@@ -160,8 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 });
 
-//
-//
+// ------------------------------------------------------------ Phần điều khiển 1 ------------------------------------------------//
 //
 // Thêm sự kiện cho các công tắc bật/tắt
 document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
@@ -228,7 +276,7 @@ function sendData(action) {
   }
 }
 
-// ------------------- Xử lý tác vụ khi nhấn vào phần Narbar ---------------------------//
+// ----------------------------------------------------------- Xử lý tác vụ khi nhấn vào phần Narbar -----------------------------------------------------------------//
 const user_layout = document.querySelector(".user_layout");
 const open_navbar = document.querySelector(".open_navbar");
 
@@ -237,7 +285,6 @@ open_navbar.onclick = function () {
   open_navbar.classList.toggle("Close_navbar");
 };
 
-// ------------------- Xử lý tác vụ khi nhấn vào phần Narbar ---------------------------//
 const Column_1 = document.querySelector(".Column_1");
 const arrow_narbar_C = document.querySelector(".arrow_narbar_C");
 
@@ -254,9 +301,19 @@ arrow_narbar_C1.onclick = function () {
   arrow_narbar_C1.classList.toggle("Close_navbar_C1");
 };
 
-// ------------------- Xử lý tác vụ khi nhấn vào phần Navbar menu ---------------------------//
+// Mở toàn bộ màn hình
+document
+  .getElementById("fullscreen-btn")
+  .addEventListener("click", function () {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((err) => {
+        console.log(`Không thể mở toàn màn hình: ${err.message}`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  });
 
-// Mở cửa sổ modal
 // Hàm đóng tất cả các cửa sổ modal
 function closeAllModals() {
   document.getElementById("banner").style.display = "none";
@@ -326,7 +383,7 @@ function saveSettings() {
   closeModal();
 }
 
-// ------------------- Xử lý tác vụ khi nhấn vào phần thông tin  ---------------------------//
+// ------------------------------------------------------- Xử lý tác vụ khi nhấn vào phần thông tin  -------------------------------------------------------------//
 
 function openInfo() {
   document.getElementById("").style.display = "";
@@ -705,6 +762,7 @@ document
   .getElementById("left-distance-input")
   .addEventListener("input", saveDistanceValues);
 
+// ------------------------------------------------------------ Phần cài đặt 2 ------------------------------------------------//
 // Hàm lưu giá trị cho cả Car và Arm
 function saveValues(type) {
   if (type === "Car") {
@@ -832,7 +890,7 @@ accelerationInputCar.addEventListener("input", saveCarValues);
 speedInputCar.addEventListener("input", saveCarValues);
 //
 //
-//
+// ------------------------------------------------------------ Phần điều khiển 2 ------------------------------------------------//
 document.addEventListener("keydown", function (event) {
   const key = event.key.toLowerCase();
   switch (key) {

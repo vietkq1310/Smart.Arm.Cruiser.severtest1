@@ -62,10 +62,10 @@
 
 .modal_C {
   position: fixed;
-  background-color: var(--bg_Gunmetal);
+  /* background-color: var(--bg_Gunmetal); */
   display: none;
   z-index: 1;
-  right: 0;
+  right: -10px;
   top: 0;
   width: calc(100vw - 78px);
   height: 100vh;

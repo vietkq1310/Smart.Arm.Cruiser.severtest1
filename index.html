@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./main_control.css" />
     <link rel="stylesheet" href="./main_setting.css" />
     <title>Control</title>
-    <!-- <link rel="icon" href="./Img/LOGO.png" type="image/png" /> -->
+    <link rel="icon" href="./Img/logo.png" type="image/png" />
   </head>
   <body>
     <div class="rotary_phone">
@@ -36,6 +36,13 @@
           <!-- link -->
           <ul class="navbar_links">
             <!-- <a href="home.html"><img src="/Img/LOGO.png" alt="icon"></a> -->
+            <li class="navbar_link">
+              <a class="full_screen">
+                <button id="fullscreen-btn">
+                  <i class="fa-solid fa-maximize"></i>Full screen
+                </button></a
+              >
+            </li>
             <li class="navbar_link">
               <a href="#" class="active" onclick="openHome()">
                 <icon_i class="fa-solid fa-house-user"></icon_i> Trang chủ</a
@@ -72,23 +79,46 @@
           </div>
         </nav>
       </header>
-
+      <!-- <div class="video-background">
+        <video autoplay muted loop id="background-video">
+          <source
+            src="Img/pixverse2Fmedia2F35881f50-e3e7-46f4-af27-ef70a5ea8545_seed811064247.mp4"
+            type="video/mp4"
+          />
+          Trình duyệt của bạn không hỗ trợ video.
+        </video>
+      </div> -->
       <!-- Hiển thị phần trang chủ  -->
       <section id="banner">
         <div class="container">
-          <div class="banner_img">
-            <img
-              src="./Img/Angry_Robot_3D.png"
-              alt="Angry Robot"
-              class="responsive-image"
-            />
+          <div class="Box_input_1">
+            <i class="fa-regular fa-circle"></i>
+            <h1>Hãy bắt đầu từ đây</h1>
           </div>
-          <div class="banner_heading">
-            <h1>Smart Arm Cruiser</h1>
+          <div class="line1"></div>
+          <div class="Box_input_2">
+            <i class="fa-solid fa-angle-left"></i>
+            <i class="fa-solid fa-angle-right"></i>
+            <div class="information_input">
+              <h3>Nhập địa chỉ IP của xe</h3>
+              <div class="input_box">
+                <input type="text" id="ipInput" placeholder="//192.168.0.13" />
+
+                <br />
+                <button id="ipBtn">
+                  Hãy bắt đầu điều khiển
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+              <div id="errorMessage">Vui lòng nhập địa chỉ IP hợp lệ.</div>
+              <div id="status">Status: Disconnected</div>
+            </div>
+          </div>
+          <div class="line2"></div>
+          <div class="Box_input_3">
+            <i class="fa-regular fa-circle"></i>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam,
-              amet. Accusamus beatae, consectetur dolorum explicabo sint
-              incidunt. Earum, quae nobis.
+              Đây là trang wed dùng để điều khiển xe trang bị cánh tay robot
             </p>
           </div>
         </div>

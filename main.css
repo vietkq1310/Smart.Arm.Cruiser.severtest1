@@ -6,25 +6,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  overflow: hidden; /* Ngăn không cho cuộn trang */
-}
-
-img {
-  max-width: 100%;
-  width: 71%;
-}
-
-.container {
-  max-width: 1200px;
-  width: 100%; /* Chiều rộng bằng toàn bộ chiều rộng màn hình */
-  margin: 0 auto;
-  padding: 0 10px;
-}
-
 :root {
   --bg_Gunmetal: #232529;
   --Aquamarine: #24c48e;
@@ -111,12 +92,23 @@ img {
   background: var(--White_with); /* Màu nền của đường ray thanh cuộn */
   border-radius: 10px; /* Bo góc */
 }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Ngăn không cho cuộn trang */
+}
 
 body {
-  position: relative;
-  width: 100%;
-  min-height: 150vh;
-  background: var(--bg_Gunmetal);
+  background-image: url("./Img/snapedit_1727686465533.jpeg");
+  background-size: cover; /* Để hình nền phủ kín trang */
+  background-position: center; /* Căn giữa hình nền */
+  background-repeat: no-repeat; /* Không lặp lại hình nền */
+}
+
+img {
+  max-width: 100%;
+  width: 71%;
 }
 
 .user_layout {
@@ -127,29 +119,61 @@ body {
 /* ----------------------------------------------------------------- ===Thanh navbar menu === ------------------------------------------------------------------------ */
 nav {
   position: fixed;
-  top: 0;
-  width: 70px;
-  height: 100%;
-  background: var(--bg_Gunmetal);
+  width: 72px;
+  height: 98%;
+  background: #23374d;
   display: flex;
-  padding: 0;
+  margin-left: 8px;
   z-index: 5;
+  transform: translateY(1%);
+  border-radius: 35px;
   transition: ease-in-out 0.5s;
+  opacity: 0.8;
+}
+
+.full_screen {
+  margin-top: -75px;
+  margin-bottom: 160px;
+  border-radius: 35px;
+}
+
+#fullscreen-btn {
+  background-color: rgb(255, 255, 255, 0);
+  color: var(--green-l);
+  font-size: 0.8em;
+  border: none;
+  cursor: pointer;
+}
+
+#fullscreen-btn i {
+  margin-left: -6px;
+  margin-right: 22px;
+  align-content: center;
+  justify-content: center;
+  color: var(--green-l);
+  font-size: 1.3em;
+  transition: linear 0.2s;
+  vertical-align: middle;
+}
+#fullscreen-btn:hover,
+#fullscreen-btn i:hover {
+  color: var(--Aquamarine);
+  transition: 0.3s ease, color 0.3s ease, transform 0.3s ease-in-out;
 }
 
 nav ul li a {
-  margin-left: 2px;
-  margin-right: 2px;
+  display: flex;
+  margin: 5px;
   height: 65px;
   color: var(--green-l);
   font-size: 1.8em;
   text-decoration: none;
-  display: flex;
   align-items: center;
   border-radius: 10px;
   padding: 20px;
   padding: linear 0, 5s;
   white-space: nowrap;
+  vertical-align: middle;
 }
 
 nav ul {
@@ -158,24 +182,27 @@ nav ul {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
-  padding-top: 50px; /* Điều chỉnh để các chữ nằm giữa */
+  padding-top: 80px; /* Điều chỉnh để các chữ nằm giữa */
 }
 
 nav ul li:last-child {
   margin-top: auto;
-  margin-bottom: 10px; /* Thay đổi giá trị này theo ý muốn */
+  margin-bottom: 1px; /* Thay đổi giá trị này theo ý muốn */
 }
 
 nav ul li a icon_i {
-  margin-left: -6px;
+  margin-left: -8px;
   margin-right: 22px;
   color: var(--green-l);
   font-size: 1.2em;
   transition: linear 0.2s;
+  opacity: 1;
 }
-
+.open_navbar {
+  border-radius: 35px;
+}
 .Open_navbar nav {
   width: 240px;
   transition: ease-in-out 0.5s;
@@ -193,7 +220,7 @@ nav .open_navbar :hover,
 nav ul li a:hover icon_i,
 nav ul li a icon_i:hover,
 nav ul li a icon_i:hover + span {
-  color: var(--Aquamarine);
+  color: #40b6e4;
   transition: 0.3s ease, color 0.3s ease, transform 0.3s ease-in-out;
 }
 
@@ -207,6 +234,150 @@ nav ul li a:hover,
 nav ul li a icon_i:hover + span {
   background-color: var(--gray);
   transition: 0.3s ease, color 0.3s ease, transform 0.3s ease-in-out;
+}
+
+/* ============================================== Phần hiển thị màn hình chính ============================================== */
+.container {
+  display: block;
+  margin-left: 200px;
+
+  height: 60%;
+  padding: 0 10px;
+}
+
+#ipBtn i {
+  font-size: 18px;
+  margin-left: 10px;
+}
+.Box_input_1,
+.Box_input_2,
+.Box_input_3 {
+  display: flex;
+  align-items: center;
+}
+
+.Box_input_2 i {
+  font-size: 30px;
+  color: #000000;
+}
+.Box_input_1 i,
+.Box_input_3 i {
+  display: inline-block; /* Để có kích thước phù hợp với nội dung */
+  border-radius: 50%; /* Bo tròn để tạo hiệu ứng hình tròn */
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.7),
+    0 0 40px rgba(221, 235, 245, 0.5), 0 0 60px rgba(184, 226, 255, 0.3);
+  color: #000000;
+  font-size: 20px;
+  margin-right: 40px;
+  margin-left: 10px;
+}
+.Box_input_1 i:hover,
+.Box_input_3 i:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 10px 5px rgba(175, 223, 255, 0.7),
+    0 0 10px rgba(133, 196, 237, 0.5);
+}
+
+.Box_input_2,
+.Box_input_3 {
+  margin-top: 30px;
+}
+
+.line1 {
+  width: 5px;
+  height: 120px;
+  border-radius: 3px;
+  background-color: #261d9d;
+  margin-left: 17px;
+  margin-bottom: -40px;
+  margin-top: -20px;
+}
+.line2 {
+  width: 5px;
+  height: 120px;
+  border-radius: 3px;
+  background-color: #261d9d;
+  margin-left: 17px;
+  margin-bottom: -20px;
+  margin-top: -10px;
+}
+h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.information_input h3 {
+  font-size: 15px;
+  margin-left: 2px;
+  margin-bottom: 4px;
+  color: #c160eb;
+  margin-left: 38px;
+}
+
+#status {
+  margin-left: 100px;
+}
+.input_box {
+  display: flex;
+}
+.input_box input[type="text"] {
+  width: 300px;
+  height: 50px;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  margin-right: 20px;
+  margin-left: 35px;
+  border: 2px solid #4586e1;
+}
+button {
+  height: 50px;
+  padding: 15px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.Box_input_3 {
+  font-size: 16px;
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+input.invalid {
+  border-color: red;
+}
+input.valid {
+  border-color: rgb(86, 182, 208);
+}
+
+#ipBtn {
+  display: flex;
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0);
+  color: white;
+  border: 2px solid #4586e1;
+}
+#ipBtn:hover {
+  border: 2px solid #c160eb;
+}
+
+#status {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #58a6ff;
+}
+#errorMessage {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 90px;
+  display: none;
 }
 
 /* --------------------------------------------==== Scale phù hợp với màn hình ngang điện thoại  ====------------------------------------------------------------ */
@@ -224,6 +395,11 @@ nav ul li a icon_i:hover + span {
     top: 0;
     width: 55px;
     /* background-color: #0196c7; */
+  }
+
+  .full_screen {
+    margin-top: -80px;
+    margin-bottom: 10px;
   }
 
   nav ul li a {

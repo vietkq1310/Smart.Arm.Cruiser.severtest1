@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Control for ESP32-S3</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+      }
+      h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+      input {
+        width: calc(100% - 12px);
+        padding: 6px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s ease;
+      }
+      input.invalid {
+        border-color: red;
+      }
+      input.valid {
+        border-color: green;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      button:disabled {
+        background-color: #999;
+      }
+      #status {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+      #errorMessage {
+        color: red;
+        font-size: 12px;
+        margin-top: 10px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>WebSocket Control for ESP32-S3</h1>
+
+      <div class="form-group">
+        <label for="ipAddress">WebSocket IP:</label>
+        <input
+          type="text"
+          id="ipAddress"
+          placeholder="Enter WebSocket IP"
+          value="192.168.44.36"
+        />
+        <div id="errorMessage">Please enter a valid IP address.</div>
+      </div>
+
+      <button id="connectBtn">Connect</button>
+
+      <div id="status">Status: Disconnected</div>
+
+      <div class="form-group">
+        <button id="forwardBtn" disabled>Forward</button>
+        <button id="backwardBtn" disabled>Backward</button>
+        <button id="leftBtn" disabled>Left</button>
+        <button id="rightBtn" disabled>Right</button>
+      </div>
+    </div>
+
+    <script>
+      let webSocket;
+      const connectBtn = document.getElementById("connectBtn");
+      const statusDiv = document.getElementById("status");
+      const forwardBtn = document.getElementById("forwardBtn");
+      const backwardBtn = document.getElementById("backwardBtn");
+      const leftBtn = document.getElementById("leftBtn");
+      const rightBtn = document.getElementById("rightBtn");
+      const ipAddressInput = document.getElementById("ipAddress");
+      const errorMessage = document.getElementById("errorMessage");
+
+      // Hàm kiểm tra định dạng IP
+      function isValidIP(ip) {
+        const regex =
+          /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+        return regex.test(ip);
+      }
+
+      // Thêm sự kiện lắng nghe cho ô nhập địa chỉ IP
+      ipAddressInput.addEventListener("input", () => {
+        errorMessage.style.display = "none"; // Ẩn thông báo lỗi khi người dùng nhập
+      });
+
+      connectBtn.addEventListener("click", () => {
+        const ipAddress = ipAddressInput.value;
+
+        // Kiểm tra địa chỉ IP có hợp lệ không
+        if (!isValidIP(ipAddress)) {
+          ipAddressInput.classList.remove("valid");
+          ipAddressInput.classList.add("invalid");
+          errorMessage.style.display = "block";
+          ipAddressInput.value = ""; // Xóa địa chỉ IP đã nhập
+          return;
+        }
+
+        ipAddressInput.classList.remove("invalid");
+        ipAddressInput.classList.add("valid");
+        errorMessage.style.display = "none";
+
+        const wsUrl = `ws://${ipAddress}:81/`;
+        webSocket = new WebSocket(wsUrl);
+
+        webSocket.onopen = () => {
+          statusDiv.textContent = "Status: Connected";
+          forwardBtn.disabled = false;
+          backwardBtn.disabled = false;
+          leftBtn.disabled = false;
+          rightBtn.disabled = false;
+        };
+
+        webSocket.onclose = () => {
+          statusDiv.textContent = "Status: Disconnected";
+          forwardBtn.disabled = true;
+          backwardBtn.disabled = true;
+          leftBtn.disabled = true;
+          rightBtn.disabled = true;
+        };
+
+        webSocket.onerror = (error) => {
+          console.error("WebSocket Error: ", error);
+          statusDiv.textContent = "Status: Error";
+        };
+      });
+
+      function sendCommand(command) {
+        if (webSocket.readyState === WebSocket.OPEN) {
+          webSocket.send(command);
+          console.log(`Sent command: ${command}`);
+        } else {
+          console.log("WebSocket is not open.");
+        }
+      }
+
+      forwardBtn.addEventListener("click", () => sendCommand("forward"));
+      backwardBtn.addEventListener("click", () => sendCommand("backward"));
+      leftBtn.addEventListener("click", () => sendCommand("left"));
+      rightBtn.addEventListener("click", () => sendCommand("right"));
+    </script>
+  </body>
+</html>
