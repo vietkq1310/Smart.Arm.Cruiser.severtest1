@@ -1,97 +1,3 @@
-// ------------------------------------------------------------ Gửi giá trị từ wed về để điều khiển xe (ESP32-S3) ------------------------------------------------//
-
-let webSocket;
-const ipBtn = document.getElementById("ipBtn");
-const controlBtn = document.getElementById("controlBtn");
-const statusDiv = document.getElementById("status");
-const ipInput = document.getElementById("ipInput");
-const errorMessage = document.getElementById("errorMessage");
-
-// Hàm kiểm tra định dạng IP
-function isValidIP(ip) {
-  const regex =
-    /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-  return regex.test(ip);
-}
-
-// Sự kiện lắng nghe cho ô nhập địa chỉ IP
-ipInput.addEventListener("input", () => {
-  errorMessage.style.display = "none"; // Ẩn thông báo lỗi khi người dùng nhập
-});
-
-// Sự kiện lắng nghe cho nút IP
-ipBtn.addEventListener("click", () => {
-  const ipAddress = ipInput.value;
-
-  // Kiểm tra địa chỉ IP có hợp lệ không
-  if (!isValidIP(ipAddress)) {
-    ipInput.classList.remove("valid");
-    ipInput.classList.add("invalid");
-    errorMessage.style.display = "block";
-    return;
-  }
-
-  ipInput.classList.remove("invalid");
-  ipInput.classList.add("valid");
-  errorMessage.style.display = "none";
-
-  const wsUrl = `ws://${ipAddress}:81/`;
-  webSocket = new WebSocket(wsUrl);
-
-  webSocket.onopen = () => {
-    statusDiv.textContent = "Status: Connected";
-    controlBtn.disabled = false;
-  };
-
-  webSocket.onclose = () => {
-    statusDiv.textContent = "Status: Disconnected";
-    controlBtn.disabled = true;
-  };
-
-  webSocket.onerror = (error) => {
-    console.error("WebSocket Error: ", error);
-    statusDiv.textContent = "Status: Error";
-  };
-});
-
-// Sự kiện lắng nghe cho nút điều khiển
-controlBtn.addEventListener("click", () => {
-  if (webSocket && webSocket.readyState === WebSocket.OPEN) {
-    webSocket.send("start_control");
-    console.log("Sent command: start_control");
-  } else {
-    console.log("WebSocket is not open.");
-  }
-});
-
-// const webSocket = new WebSocket("ws://192.168.44.36:81/"); // Đổi IP này thành IP của ESP32 của bạn
-
-// webSocket.onopen = () => {
-//   console.log("WebSocket is connected.");
-// };
-
-// webSocket.onmessage = (event) => {
-//   console.log("Received:", event.data);
-// };
-
-// webSocket.onclose = () => {
-//   console.log("WebSocket is disconnected.");
-// };
-
-// function sendCommand(command) {
-//   if (webSocket.readyState === WebSocket.OPEN) {
-//     webSocket.send(command);
-//     console.log(`Sent command: ${command}`);
-//   } else {
-//     console.log("WebSocket is not open.");
-//   }
-// }
-
-// function sendSwitchState(id, state) {
-//   const command = `${id}:${state}`;
-//   sendCommand(command);
-// }
-
 // ------------------------------------------------------------ Phần cài đặt 1 ------------------------------------------------//
 const tabs = document.querySelectorAll(".sidebar ul li");
 const sections = document.querySelectorAll(".content-section");
@@ -228,29 +134,29 @@ document
   .forEach((button) => {
     button.addEventListener("click", (event) => {
       const action = event.target.classList.contains("buttons_1lu")
-        ? "UP"
+        ? "CAR_UP"
         : event.target.classList.contains("buttons_1ld")
-        ? "DOWN"
+        ? "CAR_DOWN"
         : event.target.classList.contains("buttons_1lr")
-        ? "RIGHT"
+        ? "CAR_RIGHT"
         : event.target.classList.contains("buttons_1ll")
-        ? "LEFT"
+        ? "CAR_LEFT"
         : event.target.classList.contains("buttons_2lr")
-        ? "RIGHT2"
+        ? "CAR_ROTATE_RIGHT"
         : event.target.classList.contains("buttons_2ll")
-        ? "LEFT2"
+        ? "CAR_ROTATE_LEFT"
         : event.target.classList.contains("buttons_1ru")
-        ? "UP_R"
+        ? "Step_X+"
         : event.target.classList.contains("buttons_1rd")
-        ? "DOWN_R"
+        ? "Step_X-"
         : event.target.classList.contains("buttons_1rr")
-        ? "RIGHT_R"
+        ? "Step_Y+"
         : event.target.classList.contains("buttons_1rl")
-        ? "LEFT_R"
+        ? "Step_Y-"
         : event.target.classList.contains("buttons_2rr")
-        ? "RIGHT3"
+        ? "Step_Z+"
         : event.target.classList.contains("buttons_2rl")
-        ? "LEFT3"
+        ? "Step_Z-"
         : "UNKNOWN";
 
       sendData(action);
@@ -383,6 +289,93 @@ function saveSettings() {
   closeModal();
 }
 
+// ------------------------------------------------------------ Gửi giá trị từ wed về để điều khiển xe (ESP32-S3) ------------------------------------------------//
+
+let webSocket;
+const ipBtn = document.getElementById("ipBtn");
+const controlBtn = document.getElementById("controlBtn");
+const statusDiv = document.getElementById("status");
+const ipInput = document.getElementById("ipInput");
+const errorMessage = document.getElementById("errorMessage");
+
+// Hàm kiểm tra định dạng IP
+function isValidIP(ip) {
+  const regex =
+    /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+  return regex.test(ip);
+}
+
+// Sự kiện lắng nghe cho ô nhập địa chỉ IP
+ipInput.addEventListener("input", () => {
+  errorMessage.style.display = "none"; // Ẩn thông báo lỗi khi người dùng nhập
+});
+
+// Sự kiện lắng nghe cho nút IP
+ipBtn.addEventListener("click", () => {
+  const ipAddress = ipInput.value;
+
+  // Kiểm tra địa chỉ IP có hợp lệ không
+  if (!isValidIP(ipAddress)) {
+    ipInput.classList.remove("valid");
+    ipInput.classList.add("invalid");
+    errorMessage.style.display = "block";
+    return;
+  }
+
+  ipInput.classList.remove("invalid");
+  ipInput.classList.add("valid");
+  errorMessage.style.display = "none";
+
+  const wsUrl = `ws://${ipAddress}:81/`;
+  webSocket = new WebSocket(wsUrl);
+
+  webSocket.onopen = () => {
+    statusDiv.textContent = "Status: Connected";
+    controlBtn.disabled = false;
+    console.log("WebSocket is connected.");
+  };
+
+  webSocket.onmessage = (event) => {
+    console.log("Received:", event.data);
+  };
+
+  webSocket.onclose = () => {
+    statusDiv.textContent = "Status: Disconnected";
+    controlBtn.disabled = true;
+    console.log("WebSocket is disconnected.");
+  };
+
+  webSocket.onerror = (error) => {
+    console.error("WebSocket Error: ", error);
+    statusDiv.textContent = "Status: Error";
+  };
+});
+
+// Sự kiện lắng nghe cho nút điều khiển
+controlBtn.addEventListener("click", () => {
+  if (webSocket && webSocket.readyState === WebSocket.OPEN) {
+    sendCommand("start_control");
+    console.log("Sent command: start_control");
+  } else {
+    console.log("WebSocket is not open.");
+  }
+});
+
+// Hàm gửi lệnh
+function sendCommand(command) {
+  if (webSocket.readyState === WebSocket.OPEN) {
+    webSocket.send(command);
+    console.log(`Sent command: ${command}`);
+  } else {
+    console.log("WebSocket is not open.");
+  }
+}
+
+// Hàm gửi trạng thái công tắc
+function sendSwitchState(id, state) {
+  const command = `${id}:${state}`;
+  sendCommand(command);
+}
 // ------------------------------------------------------- Xử lý tác vụ khi nhấn vào phần thông tin  -------------------------------------------------------------//
 
 function openInfo() {
@@ -969,29 +962,29 @@ document
   .forEach((button) => {
     button.addEventListener("click", (event) => {
       const action = event.target.classList.contains("buttons_1lu")
-        ? "UP"
+        ? "CAR_UP"
         : event.target.classList.contains("buttons_1ld")
-        ? "DOWN"
+        ? "CAR_DOWN"
         : event.target.classList.contains("buttons_1lr")
-        ? "RIGHT"
+        ? "CAR_RIGHT"
         : event.target.classList.contains("buttons_1ll")
-        ? "LEFT"
+        ? "CAR_LEFT"
         : event.target.classList.contains("buttons_2lr")
-        ? "RIGHT2"
+        ? "CAR_ROTATE_RIGHT"
         : event.target.classList.contains("buttons_2ll")
-        ? "LEFT2"
+        ? "CAR_ROTATE_LEFT"
         : event.target.classList.contains("buttons_1ru")
-        ? "UP_R"
+        ? "Step_X+"
         : event.target.classList.contains("buttons_1rd")
-        ? "DOWN_R"
+        ? "Step_X-"
         : event.target.classList.contains("buttons_1rr")
-        ? "RIGHT_R"
+        ? "Step_Y+"
         : event.target.classList.contains("buttons_1rl")
-        ? "LEFT_R"
+        ? "Step_Y-"
         : event.target.classList.contains("buttons_2rr")
-        ? "RIGHT3"
+        ? "Step_Z+"
         : event.target.classList.contains("buttons_2rl")
-        ? "LEFT3"
+        ? "Step_Z-"
         : "UNKNOWN";
       sendData(action);
     });

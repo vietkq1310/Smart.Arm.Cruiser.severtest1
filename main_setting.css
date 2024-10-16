@@ -109,7 +109,7 @@ body {
 .modal-body {
   display: flex;
   margin-top: 20px;
-  height: calc(100% - 50px); /* Chiều cao của phần thân modal */
+  height: calc(100% - 90px); /* Chiều cao của phần thân modal */
   overflow-y: auto; /* Kích hoạt cuộn chuột dọc */
 }
 
@@ -316,15 +316,15 @@ body {
   padding: 5px;
 }
 
-.input-wrapper {
+.content-section .input-wrapper {
   display: flex;
   align-items: center;
   border: 1px solid var(--White_with);
   border-radius: 20px;
 }
 
-.input-wrapper input[type="number"] {
-  width: 50px;
+.content-section .input-wrapper input[type="number"] {
+  width: 70px;
   text-align: center;
   border: none; /* Ẩn viền */
   background: none; /* Ẩn nền */
@@ -346,7 +346,7 @@ body {
   border: none;
   padding: 3px 3px;
   font-size: 15px;
-  margin: 0 5px;
+  margin: -10px 6px;
 }
 
 .input-wrapper button:hover {

@@ -33,20 +33,24 @@
       <!-- Hiển thị phần navbar Menu -->
       <header>
         <nav class="navbar">
-          <!-- link -->
           <ul class="navbar_links">
-            <!-- <a href="home.html"><img src="/Img/LOGO.png" alt="icon"></a> -->
+            <!-- Full screen nằm trên cùng -->
             <li class="navbar_link">
               <a class="full_screen">
                 <button id="fullscreen-btn">
-                  <i class="fa-solid fa-maximize"></i>Full screen
-                </button></a
-              >
+                  <i class="fa-solid fa-maximize"></i> Full screen
+                </button>
+              </a>
             </li>
+
+            <!-- Phần khoảng trống để đẩy các mục chính xuống giữa -->
+            <div class="spacer-top"></div>
+
+            <!-- 4 mục chính nằm giữa -->
             <li class="navbar_link">
               <a href="#" class="active" onclick="openHome()">
-                <icon_i class="fa-solid fa-house-user"></icon_i> Trang chủ</a
-              >
+                <icon_i class="fa-solid fa-house-user"></icon_i> Trang chủ
+              </a>
             </li>
             <li class="navbar_link">
               <a href="#" class="active" onclick="openControl()">
@@ -55,15 +59,19 @@
             </li>
             <li class="navbar_link">
               <a href="#" class="active" onclick="openModal()">
-                <icon_i class="fa-solid fa-screwdriver-wrench"></icon_i>Cài
-                Đặt</a
-              >
+                <icon_i class="fa-solid fa-screwdriver-wrench"></icon_i> Cài Đặt
+              </a>
             </li>
             <li class="navbar_link">
               <a href="#" class="active" onclick="openInfo()">
-                <icon_i class="fa-solid fa-circle-info"></icon_i> Thông tin</a
-              >
+                <icon_i class="fa-solid fa-circle-info"></icon_i> Thông tin
+              </a>
             </li>
+
+            <!-- Phần khoảng trống để đẩy nút đóng xuống dưới cùng -->
+            <div class="spacer-bottom"></div>
+
+            <!-- Open navbar nằm dưới cùng -->
             <li class="navbar_link">
               <a class="open_navbar">
                 <icon_i class="fa-solid fa-arrow-right-from-bracket"></icon_i>
@@ -71,6 +79,7 @@
               </a>
             </li>
           </ul>
+
           <!-- button -->
           <div class="navbar_icons">
             <div>
