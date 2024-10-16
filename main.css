@@ -5,6 +5,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* Loại bỏ hiệu ứng chạm cho tất cả các phần tử */
+* {
+  -webkit-tap-highlight-color: transparent; /* Không có màu khi nhấn */
+}
 
 :root {
   --bg_Gunmetal: #232529;
@@ -446,7 +450,7 @@ input.valid {
   }
 
   nav ul li a icon_i {
-    margin-left: -10px;
+    margin-left: -11px;
     margin-right: 22px;
     color: var(--green-l);
     font-size: 1.1em;
@@ -567,13 +571,17 @@ input.valid {
   /* ============================================== Phần hiển thị màn hình chính ============================================== */
   .container {
     margin-left: 130px;
-    transform: translateY(-20%);
+    transform: translateY(-10%);
     height: 60%;
   }
 
   #ipBtn i {
     font-size: 18px;
     margin-left: 20px;
+  }
+
+  #ipInput {
+    font-size: 16px;
   }
   .Box_input_1,
   .Box_input_2,
@@ -604,20 +612,26 @@ input.valid {
   input.valid {
     border-color: rgb(86, 182, 208);
   }
+
   .line1 {
     width: 3px;
+    height: 80px;
     border-radius: 3px;
+    background-color: var(--color-text-primary-main);
     margin-left: 17px;
-    margin-bottom: -50px;
-    margin-top: -13px;
+    margin-bottom: -55px;
+    margin-top: -10px;
   }
   .line2 {
     width: 3px;
+    height: 80px;
     border-radius: 3px;
+    background-color: var(--color-text-primary-main);
     margin-left: 17px;
     margin-bottom: -10px;
-    margin-top: -38px;
+    margin-top: -40px;
   }
+
   h1 {
     font-size: 30px;
     margin-bottom: 20px;

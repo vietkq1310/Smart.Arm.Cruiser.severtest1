@@ -215,7 +215,7 @@
                 </li>
 
                 <form id="numberForm">
-                  <div class="navbar_control_axis">
+                  <div class="navbar_control_axis" id="navbarControlAxis">
                     <div class="navbar_arm_axis">
                       <button type="button" onclick="runArm()">Run Arm</button>
                       <label for="inputXA">X :</label>
@@ -224,6 +224,7 @@
                       <input type="text" id="inputYA" name="inputYA" />
                       <label for="inputZA">Z :</label>
                       <input type="text" id="inputZA" name="inputZA" />
+                      <i class="fa-solid fa-arrows-rotate"></i>
                     </div>
                     <div class="navbar_car_axis">
                       <button type="button" onclick="runCar()">Run Car</button>
@@ -231,6 +232,7 @@
                       <input type="text" id="inputXC" name="inputXC" />
                       <label for="inputYC">Y :</label>
                       <input type="text" id="inputYC" name="inputYC" />
+                      <i class="fa-solid fa-arrows-rotate"></i>
                     </div>
                   </div>
                 </form>
@@ -239,6 +241,7 @@
                   >Vui lòng nhập một số hợp lệ.</span
                 >
               </div>
+
               <div class="button-control">
                 <!-- Nút điều khiển thuộc cột 1 -->
                 <div class="Column_1s">

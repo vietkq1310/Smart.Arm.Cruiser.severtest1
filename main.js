@@ -1,4 +1,48 @@
 // ------------------------------------------------------------ Phần cài đặt 1 ------------------------------------------------//
+
+const navbarControlAxis = document.getElementById("navbarControlAxis");
+const armAxis = document.querySelector(".navbar_arm_axis");
+const carAxis = document.querySelector(".navbar_car_axis");
+
+navbarControlAxis.addEventListener("click", function (event) {
+  // Ngăn sự kiện click vào phần input hoặc button
+  if (event.target.tagName !== "INPUT" && event.target.tagName !== "BUTTON") {
+    if (navbarControlAxis.classList.contains("open")) {
+      navbarControlAxis.classList.remove("open");
+      carAxis.style.display = "none";
+      armAxis.style.display = "flex";
+    } else {
+      navbarControlAxis.classList.add("open");
+      carAxis.style.display = "flex";
+      armAxis.style.display = "none";
+    }
+  }
+});
+
+function runArm() {
+  const xA = document.getElementById("inputXA").value;
+  const yA = document.getElementById("inputYA").value;
+  const zA = document.getElementById("inputZA").value;
+
+  if (isNaN(xA) || isNaN(yA) || isNaN(zA)) {
+    document.getElementById("errorMessage").style.display = "block";
+  } else {
+    document.getElementById("errorMessage").style.display = "none";
+    alert(`Running Arm with X: ${xA}, Y: ${yA}, Z: ${zA}`);
+  }
+}
+
+function runCar() {
+  const xC = document.getElementById("inputXC").value;
+  const yC = document.getElementById("inputYC").value;
+
+  if (isNaN(xC) || isNaN(yC)) {
+    document.getElementById("errorMessage").style.display = "block";
+  } else {
+    document.getElementById("errorMessage").style.display = "none";
+    alert(`Running Car with X: ${xC}, Y: ${yC}`);
+  }
+}
 const tabs = document.querySelectorAll(".sidebar ul li");
 const sections = document.querySelectorAll(".content-section");
 

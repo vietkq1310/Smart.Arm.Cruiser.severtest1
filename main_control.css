@@ -281,6 +281,7 @@
 .navbar_control_axis {
   display: flex;
 }
+
 .Control_panel {
   background-color: var(--color-additional-4-6);
   top: 0;
@@ -313,14 +314,14 @@
   background-color: #161616;
   opacity: 0.2;
 }
-/* Định dạng cho các phần tử trong navbar */
+
 .navbar-controls li {
   list-style-type: none;
   color: var(--White_with);
   text-align: center;
   cursor: pointer;
   width: 130px;
-  padding: 13px;
+  padding: 12px;
   background-color: var(--bg_Gunmetal);
   border-radius: 30px;
   transition: background-color 0.3s;
@@ -330,48 +331,45 @@
   background-color: var(--Aquamarine);
 }
 
-#numberForm {
+.navbar-controls #numberForm {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
-.navbar_car_axis {
-  background-color: var(--color-black-08);
-  align-items: center;
-  display: flex;
-  padding: 5px 10px 5px 5px;
-  border-radius: 40px;
-  gap: 2px;
-}
-
+.navbar_car_axis,
 .navbar_arm_axis {
   background-color: var(--color-black-08);
   align-items: center;
   display: flex;
-  margin-left: 12px;
   padding: 5px 10px 5px 5px;
   border-radius: 40px;
+  gap: 5px;
+}
+
+.navbar_control_axis .navbar_arm_axis {
+  margin-left: 12px;
+  margin-right: 25px;
   gap: 2px;
 }
-/* Định dạng cho các thẻ label và input trong form */
-#numberForm label {
+
+.navbar-controls #numberForm label {
   margin-right: 1px;
   margin-left: 3px;
   color: var(--White_with);
 }
 
-#numberForm input {
+.navbar-controls #numberForm input {
   border: 1px solid var(--White_with);
   border-radius: 5px;
   width: 80px;
-  height: 50%;
   background-color: var(--color-black-08);
 }
 
-/* Định dạng cho các button */
-#numberForm button {
-  padding: 10px 20px;
+.navbar-controls #numberForm button {
+  padding: 5px 18px;
+  font-size: 17px;
+  height: 38px;
   border: none;
   border-radius: 30px;
   background-color: var(--bg_Gunmetal);
@@ -380,17 +378,16 @@
   transition: background-color 0.3s;
 }
 
-#numberForm button:hover {
+.navbar-controls #numberForm button:hover {
   background-color: var(--Aquamarine);
 }
 
-/* Định dạng cho thông báo lỗi */
 .error-message {
   color: red;
-  display: none; /* Ẩn thông báo lỗi mặc định */
+  display: none;
 }
 
-/*                                                              = Phần Quản lý lệnh =                                                                                 */
+/*                            = Phần Quản lý lệnh =                                                                                 */
 .navbar_commend {
   position: absolute;
   display: flex;
@@ -403,6 +400,10 @@
   transition: height 0.8s ease-in-out;
   border-radius: 0 0 20px 20px;
   z-index: 10;
+}
+
+.navbar_commend h1 {
+  font-size: 20px;
 }
 
 .arrow_menus {
@@ -1485,7 +1486,7 @@
     font-size: 16px;
   }
 
-  /* Phần hiển thị icon xe  */
+  /*                  Phần hiển thị icon xe                   */
   .display_car {
     /* background-color: #0196c7; */
     position: absolute;
@@ -1528,306 +1529,79 @@
   }
 
   /* phần bảng điều khiển Gohome và di chuyển theo thông số có sẵn  */
-  .navbar-controls {
-    height: 40px;
+
+  .navbar_control_axis {
+    width: 380px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row; /* Sắp xếp các phần tử nằm ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: space-between; /* Căn đều các phần tử theo chiều ngang */
   }
-  /* Định dạng cho các phần tử trong navbar */
+
+  .navbar_control_axis i {
+    font-size: 13px;
+    color: var(--color-brand-primary-5);
+    margin-right: 5px;
+    margin-left: 20px;
+  }
+  .navbar-controls {
+    height: 45px;
+    margin: 0 auto;
+    gap: 10px;
+    padding: 4px;
+  }
+
   .navbar-controls li {
-    width: 80px;
-    padding: 8px;
-    font-size: 10px;
+    font-size: 12px;
+    width: 100px;
+    padding: 9px;
   }
 
   .navbar_car_axis,
   .navbar_arm_axis {
-    background-color: var(--color-black-08);
-    display: flex;
-    padding: 5px 10px 5px 5px;
-    margin-left: 8px;
-    border-radius: 40px;
-    gap: 2px;
-  }
-
-  #numberForm input {
-    width: 40px;
-    height: 60%;
-  }
-
-  /* Định dạng cho các button */
-  #numberForm button {
-    padding: 5px 10px;
-    font-size: 10px;
-  }
-
-  /* Phần cột 1 trong bẳng điều khiên  */
-  .Column_1s {
-    top: 15%;
-    z-index: 100;
-  }
-  .Column_1 {
-    width: 50px;
-    height: 195px;
-    border-radius: 15px;
-    transition: width 0.5s ease;
-  }
-
-  .Column_1s .arrow_narbar_C {
-    right: -8px;
-    width: 16px;
-    height: 70px;
-    border: 3px solid var(--color-additional-4-6);
-  }
-
-  .Column_1s .Column_1.Open_navbar_C {
-    width: 140px;
-    transition: width 0.5s ease;
-  }
-
-  .Column_1 .icon {
-    width: 100%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    margin-left: 8px;
-    font-size: 1.1em;
-  }
-
-  .Column_1 .icon i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background-color: var(--White_with);
-    border-radius: 50%;
-  }
-
-  /* Các phần tử sẽ tự động căn giữa theo chiều ngang */
-
-  .switch_1 {
-    margin-left: 55px;
-    margin-top: -70px;
-  }
-  .switch_2 {
-    margin-left: 55px;
-    margin-top: -33px;
-  }
-  /* tùy chọn lên xuống bên trái  */
-  .valueInput1,
-  .valueInput2,
-  .valueInput3 {
-    margin-bottom: 10px;
-    margin-left: 5px;
-    left: 45px;
-    width: 75px;
-    height: 28px;
-    border: 1.5px solid rgba(255, 255, 255, 1);
-  }
-
-  .valueInput1 .next1,
-  .valueInput2 .next2,
-  .valueInput3 .next3 {
-    top: 35%;
-    right: 8px;
-    width: 10px;
-    height: 10px;
-    border-top: 3.6px solid var(--Aquamarine);
-    border-left: 3.6px solid var(--Aquamarine);
-  }
-  .valueInput1 .prev1,
-  .valueInput2 .prev2,
-  .valueInput3 .prev3 {
-    top: 35%;
-    left: 8px;
-    width: 10px;
-    height: 10px;
-    border-top: 3.6px solid var(--Aquamarine);
-    border-left: 3.6px solid var(--Aquamarine);
-  }
-
-  #box1,
-  #box2,
-  #box3 {
-    display: flex;
-    justify-content: center;
-  }
-  #box1 span,
-  #box2 span,
-  #box3 span {
-    line-height: 35px;
+    font-size: 11px;
+    height: 32px;
     display: none;
-    font-size: 20px;
-    margin-top: -3px;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
   }
 
-  /* nút bật tắt 1 bên trái  */
-
-  .switch_1,
-  .switch_2 {
-    position: relative;
-    display: flex;
+  .navbar_arm_axis {
+    display: flex; /* Hiển thị mặc định */
+  }
+  .navbar-controls #numberForm input {
+    border-radius: 5px;
     width: 60px;
-    height: 28px;
-    appearance: none;
-    background-color: var(--color-neutral-solid-8);
-    border-radius: 20px;
-  }
-  .switch_1::before,
-  .switch_2::before {
-    content: "";
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    top: 2.4px;
-    left: 3px;
-    background-color: var(--bg_Gunmetal);
-    border-radius: 50%;
-    transition: 0.25s cubic-bezier(0.25, -0.59, 0.82, 1.66);
-  }
-  .switch_1:checked,
-  .switch_2:checked {
-    background-color: var(--Aquamarine);
-  }
-  .switch_1:checked:before,
-  .switch_2:checked:before {
-    left: 35px;
   }
 
-  /*                           Phần cột 5 trong bẳng điều khiên                            */
+  .navbar_control_axis.open .navbar_car_axis {
+    display: flex;
+  }
+
+  .navbar-controls #numberForm button {
+    padding: 5px 6px;
+    margin: 1px 1px 1px -1px;
+    font-size: 12px;
+    height: 25px;
+  }
+
+  .error-message {
+    color: red;
+    display: none;
+  }
+
+  .dropdown-label {
+    font-weight: bold;
+  }
+
+  /* ẩn thanh điều chỉnh khi dùng màn hình điện thoại  */
+  .Column_1s,
   .Column_5s {
-    top: 15%;
-    z-index: 100;
-  }
-  .Column_5 {
-    width: 50px;
-    height: 195px;
-    border-radius: 15px;
-    transition: width 0.5s ease;
-  }
-
-  .Column_5s .arrow_narbar_C1 {
-    left: -8px;
-    width: 16px;
-    height: 70px;
-    border: 3px solid var(--color-additional-4-6);
-  }
-
-  .Column_5s .Column_5.Open_navbar_C1 {
-    width: 140px;
-    transition: width 0.5s ease;
-  }
-
-  .Column_5 .icon {
-    display: flex;
-    width: 100%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    margin-right: -15px;
-    margin-left: -7px;
-    font-size: 1.1em;
-  }
-
-  .Column_5 .icon i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background-color: var(--White_with);
-    border-radius: 50%;
-  }
-
-  /* Các phần tử sẽ tự động căn giữa theo chiều ngang */
-
-  .switch_3 {
-    margin-top: -70px;
-    margin-right: -18px;
-  }
-  .switch_4 {
-    margin-top: -33px;
-    margin-right: -18px;
-  }
-  /* tùy chọn lên xuống bên trái  */
-  .valueInput4,
-  .valueInput5,
-  .valueInput6 {
-    margin-bottom: 10px;
-    margin-right: 5px;
-    right: 45px;
-    width: 75px;
-    height: 28px;
-    border: 1.5px solid rgba(255, 255, 255, 1);
-  }
-
-  .valueInput4 .next4,
-  .valueInput5 .next5,
-  .valueInput6 .next6 {
-    top: 35%;
-    right: 8px;
-    width: 10px;
-    height: 10px;
-    border-top: 3.6px solid var(--Aquamarine);
-    border-left: 3.6px solid var(--Aquamarine);
-  }
-  .valueInput4 .prev4,
-  .valueInput5 .prev5,
-  .valueInput6 .prev6 {
-    top: 35%;
-    left: 8px;
-    width: 10px;
-    height: 10px;
-    border-top: 3.6px solid var(--Aquamarine);
-    border-left: 3.6px solid var(--Aquamarine);
-  }
-
-  #box4,
-  #box5,
-  #box6 {
-    display: flex;
-    justify-content: center;
-  }
-  #box4 span,
-  #box5 span,
-  #box6 span {
-    position: relative;
-    line-height: 35px;
     display: none;
-    font-size: 20px;
-    margin-top: -3px;
   }
-
-  /* nút bật tắt 1 bên trái  */
-
-  .switch_3,
-  .switch_4 {
-    position: absolute;
-    display: flex;
-    width: 60px;
-    height: 28px;
-    appearance: none;
-    background-color: var(--color-neutral-solid-8);
-    border-radius: 20px;
-  }
-  .switch_3::before,
-  .switch_4::before {
-    content: "";
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    top: 2.4px;
-    left: 3px;
-    background-color: var(--bg_Gunmetal);
-    border-radius: 50%;
-    transition: 0.25s cubic-bezier(0.25, -0.59, 0.82, 1.66);
-  }
-  .switch_3:checked,
-  .switch_4:checked {
-    background-color: var(--Aquamarine);
-  }
-  .switch_3:checked:before,
-  .switch_4:checked:before {
-    left: 35px;
-  }
-
   /*                      Phần cột 3                         */
 
   .Column_3 {
@@ -2061,7 +1835,8 @@
     transform: translate(-50%, -50%);
   }
 
-  /*                                                              = Phần Quản lý lệnh =                                                                                 */
+  /*                               = Phần Quản lý lệnh =                                                                                 */
+
   .navbar_commend {
     position: absolute;
     display: flex;
@@ -2073,7 +1848,12 @@
     background: var(--gray);
     transition: height 0.8s ease-in-out;
     border-radius: 0 0 20px 20px;
-    z-index: 1000;
+    z-index: 10;
+  }
+
+  .navbar_commend h1 {
+    font-size: 20px;
+    margin-bottom: -5px;
   }
 
   .arrow_menus {
@@ -2082,34 +1862,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top: -12px; /* Khoảng cách từ trên cùng của .navbar_commend */
+    top: -10px; /* Khoảng cách từ trên cùng của .navbar_commend */
     left: 50%; /* Căn giữa theo chiều ngang */
     transform: translateX(-50%); /* Đưa phần tử về giữa hoàn toàn */
     width: 200px;
-    height: 12px;
-    border-radius: 12px 12px 0 0;
+    height: 20px;
+    border-radius: 10px;
+    border: 3.5px solid var(--color-additional-4-6);
     transition: all 0.2s;
-    z-index: 6;
-  }
-
-  .arrow_menus span {
-    position: absolute;
-    width: 150px;
-    height: 5px;
-    top: 50%; /* Căn giữa theo chiều dọc */
-    left: 50%; /* Căn giữa theo chiều ngang */
-    transform: translate(-50%, -50%); /* Đưa phần tử về giữa hoàn toàn */
-    background-color: var(--green-l);
-    border-radius: 5px;
+    z-index: 100;
   }
 
   .navbar_commend.hide-control {
-    height: 240px;
+    height: 220px;
     transition: height 0.8s ease-in-out;
     border-radius: 20px;
   }
 
-  .arrow_menus span:hover {
+  .arrow_menus:hover {
     background-color: var(--Aquamarine);
   }
 

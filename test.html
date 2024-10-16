@@ -1,210 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebSocket Control for ESP32-S3</title>
+    <title>Dropdown Control Axis Form</title>
     <style>
       body {
         font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f0f0f0;
       }
-      .container {
-        background-color: white;
+
+      .navbar_control_axis {
+        width: 500px;
+        border: 2px solid #333;
+        border-radius: 10px;
         padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        width: 300px;
-      }
-      h1 {
-        font-size: 20px;
-        margin-bottom: 20px;
-      }
-      .form-group {
-        margin-bottom: 15px;
-      }
-      label {
-        display: block;
-        font-size: 14px;
-        margin-bottom: 5px;
-      }
-      input {
-        width: calc(100% - 12px);
-        padding: 6px;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        transition: border-color 0.3s ease;
-      }
-      input.invalid {
-        border-color: red;
-      }
-      input.valid {
-        border-color: green;
-      }
-      button {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px;
-        width: 100%;
+        position: relative;
         cursor: pointer;
-        border-radius: 4px;
-        font-size: 14px;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
       }
-      button:disabled {
-        background-color: #999;
+
+      .navbar_control_axis button {
+        margin-right: 20px;
       }
-      #status {
-        margin-top: 10px;
-        font-size: 14px;
+
+      .navbar_control_axis label {
+        margin-right: 10px;
       }
-      #errorMessage {
-        color: red;
-        font-size: 12px;
-        margin-top: 10px;
+
+      .navbar_control_axis input {
+        width: 60px;
+        margin-right: 20px;
+      }
+
+      .navbar_car_axis,
+      .navbar_arm_axis {
         display: none;
+        align-items: center;
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .navbar_arm_axis {
+        display: flex; /* Hiển thị mặc định */
+      }
+
+      .navbar_control_axis.open .navbar_car_axis {
+        display: flex;
+      }
+
+      .navbar_control_axis::after {
+        content: "▼";
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        transition: transform 0.3s;
+      }
+
+      .navbar_control_axis.open::after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      .error-message {
+        color: red;
+        display: none;
+      }
+
+      .dropdown-label {
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>WebSocket Control for ESP32-S3</h1>
-
-      <div class="form-group">
-        <label for="ipAddress">WebSocket IP:</label>
-        <input
-          type="text"
-          id="ipAddress"
-          placeholder="Enter WebSocket IP"
-          value="192.168.44.36"
-        />
-        <div id="errorMessage">Please enter a valid IP address.</div>
+    <form id="numberForm">
+      <div class="navbar_control_axis" id="navbarControlAxis">
+        <div class="navbar_arm_axis">
+          <button type="button" onclick="runArm()">Run Arm</button>
+          <label for="inputXA">X:</label>
+          <input type="text" id="inputXA" name="inputXA" />
+          <label for="inputYA">Y:</label>
+          <input type="text" id="inputYA" name="inputYA" />
+          <label for="inputZA">Z:</label>
+          <input type="text" id="inputZA" name="inputZA" />
+        </div>
+        <div class="navbar_car_axis">
+          <button type="button" onclick="runCar()">Run Car</button>
+          <label for="inputXC">X:</label>
+          <input type="text" id="inputXC" name="inputXC" />
+          <label for="inputYC">Y:</label>
+          <input type="text" id="inputYC" name="inputYC" />
+        </div>
       </div>
+    </form>
 
-      <button id="connectBtn">Connect</button>
-
-      <div id="status">Status: Disconnected</div>
-
-      <div class="form-group">
-        <button id="forwardBtn" disabled>Forward</button>
-        <button id="backwardBtn" disabled>Backward</button>
-        <button id="leftBtn" disabled>Left</button>
-        <button id="rightBtn" disabled>Right</button>
-      </div>
-    </div>
+    <span id="errorMessage" class="error-message"
+      >Vui lòng nhập một số hợp lệ.</span
+    >
 
     <script>
-      let webSocket;
-      const connectBtn = document.getElementById("connectBtn");
-      const statusDiv = document.getElementById("status");
-      const forwardBtn = document.getElementById("forwardBtn");
-      const backwardBtn = document.getElementById("backwardBtn");
-      const leftBtn = document.getElementById("leftBtn");
-      const rightBtn = document.getElementById("rightBtn");
-      const ipAddressInput = document.getElementById("ipAddress");
-      const errorMessage = document.getElementById("errorMessage");
+      const navbarControlAxis = document.getElementById("navbarControlAxis");
+      const armAxis = document.querySelector(".navbar_arm_axis");
+      const carAxis = document.querySelector(".navbar_car_axis");
 
-      // Hàm kiểm tra định dạng IP
-      function isValidIP(ip) {
-        const regex =
-          /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-        return regex.test(ip);
-      }
-
-      // Thêm sự kiện lắng nghe cho ô nhập địa chỉ IP
-      ipAddressInput.addEventListener("input", () => {
-        errorMessage.style.display = "none"; // Ẩn thông báo lỗi khi người dùng nhập
-      });
-
-      connectBtn.addEventListener("click", () => {
-        const ipAddress = ipAddressInput.value;
-
-        // Kiểm tra địa chỉ IP có hợp lệ không
-        if (!isValidIP(ipAddress)) {
-          ipAddressInput.classList.remove("valid");
-          ipAddressInput.classList.add("invalid");
-          errorMessage.style.display = "block";
-          ipAddressInput.value = ""; // Xóa địa chỉ IP đã nhập
-          return;
+      navbarControlAxis.addEventListener("click", function (event) {
+        // Ngăn sự kiện click vào phần input hoặc button
+        if (
+          event.target.tagName !== "INPUT" &&
+          event.target.tagName !== "BUTTON"
+        ) {
+          if (navbarControlAxis.classList.contains("open")) {
+            navbarControlAxis.classList.remove("open");
+            carAxis.style.display = "none";
+            armAxis.style.display = "flex";
+          } else {
+            navbarControlAxis.classList.add("open");
+            carAxis.style.display = "flex";
+            armAxis.style.display = "none";
+          }
         }
-
-        ipAddressInput.classList.remove("invalid");
-        ipAddressInput.classList.add("valid");
-        errorMessage.style.display = "none";
-
-        const wsUrl = `ws://${ipAddress}:81/`;
-        webSocket = new WebSocket(wsUrl);
-
-        webSocket.onopen = () => {
-          statusDiv.textContent = "Status: Connected";
-          forwardBtn.disabled = false;
-          backwardBtn.disabled = false;
-          leftBtn.disabled = false;
-          rightBtn.disabled = false;
-        };
-
-        webSocket.onclose = () => {
-          statusDiv.textContent = "Status: Disconnected";
-          forwardBtn.disabled = true;
-          backwardBtn.disabled = true;
-          leftBtn.disabled = true;
-          rightBtn.disabled = true;
-        };
-
-        webSocket.onerror = (error) => {
-          console.error("WebSocket Error: ", error);
-          statusDiv.textContent = "Status: Error";
-        };
       });
 
-      function sendCommand(command) {
-        if (webSocket.readyState === WebSocket.OPEN) {
-          webSocket.send(command);
-          console.log(`Sent command: ${command}`);
+      function runArm() {
+        const xA = document.getElementById("inputXA").value;
+        const yA = document.getElementById("inputYA").value;
+        const zA = document.getElementById("inputZA").value;
+
+        if (isNaN(xA) || isNaN(yA) || isNaN(zA)) {
+          document.getElementById("errorMessage").style.display = "block";
         } else {
-          console.log("WebSocket is not open.");
+          document.getElementById("errorMessage").style.display = "none";
+          alert(`Running Arm with X: ${xA}, Y: ${yA}, Z: ${zA}`);
         }
       }
 
-      forwardBtn.addEventListener("click", () => sendCommand("forward"));
-      backwardBtn.addEventListener("click", () => sendCommand("backward"));
-      leftBtn.addEventListener("click", () => sendCommand("left"));
-      rightBtn.addEventListener("click", () => sendCommand("right"));
+      function runCar() {
+        const xC = document.getElementById("inputXC").value;
+        const yC = document.getElementById("inputYC").value;
+
+        if (isNaN(xC) || isNaN(yC)) {
+          document.getElementById("errorMessage").style.display = "block";
+        } else {
+          document.getElementById("errorMessage").style.display = "none";
+          alert(`Running Car with X: ${xC}, Y: ${yC}`);
+        }
+      }
     </script>
   </body>
 </html>
-
-<!-- // const webSocket = new WebSocket("ws://192.168.44.36:81/"); // Đổi IP này thành IP của ESP32 của bạn
-
-// webSocket.onopen = () => {
-//   console.log("WebSocket is connected.");
-// };
-
-// webSocket.onmessage = (event) => {
-//   console.log("Received:", event.data);
-// };
-
-// webSocket.onclose = () => {
-//   console.log("WebSocket is disconnected.");
-// };
-
-// function sendCommand(command) {
-//   if (webSocket.readyState === WebSocket.OPEN) {
-//     webSocket.send(command);
-//     console.log(`Sent command: ${command}`);
-//   } else {
-//     console.log("WebSocket is not open.");
-//   }
-// }
-
-// function sendSwitchState(id, state) {
-//   const command = `${id}:${state}`;
-//   sendCommand(command);
-// } -->
