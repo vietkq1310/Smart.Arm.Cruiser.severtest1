@@ -342,6 +342,14 @@ const statusDiv = document.getElementById("status");
 const ipInput = document.getElementById("ipInput");
 const errorMessage = document.getElementById("errorMessage");
 
+// Các nhãn điều khiển
+const upDownCar = document.getElementById("input_up_down_car");
+const leftRightCar = document.getElementById("input_left_right_car");
+const rotateCar = document.getElementById("input_rotate_car");
+const upDownArm = document.getElementById("input_up_down_arm");
+const leftRightArm = document.getElementById("input_left_right_arm");
+const rotateArm = document.getElementById("input_rotate_arm");
+
 // Hàm kiểm tra định dạng IP
 function isValidIP(ip) {
   const regex =
@@ -420,6 +428,35 @@ function sendSwitchState(id, state) {
   const command = `${id}:${state}`;
   sendCommand(command);
 }
+
+// Hàm gửi tất cả giá trị về ESP32
+function sendAllValues() {
+  const data = {
+    upDownCar: upDownCar.value,
+    leftRightCar: leftRightCar.value,
+    rotateCar: rotateCar.value,
+    upDownArm: upDownArm.value,
+    leftRightArm: leftRightArm.value,
+    rotateArm: rotateArm.value,
+  };
+
+  // Gửi toàn bộ dữ liệu dưới dạng chuỗi JSON
+  sendCommand(JSON.stringify(data));
+}
+
+// Sự kiện lắng nghe cho tất cả các nhãn (input)
+// Mỗi khi giá trị thay đổi, gọi hàm `sendAllValues` để gửi toàn bộ giá trị
+[
+  upDownCar,
+  leftRightCar,
+  rotateCar,
+  upDownArm,
+  leftRightArm,
+  rotateArm,
+].forEach((input) => {
+  input.addEventListener("change", sendAllValues);
+});
+
 // ------------------------------------------------------- Xử lý tác vụ khi nhấn vào phần thông tin  -------------------------------------------------------------//
 
 function openInfo() {
@@ -800,6 +837,48 @@ document
   .addEventListener("input", saveDistanceValues);
 
 // ------------------------------------------------------------ Phần cài đặt 2 ------------------------------------------------//
+// Tăng giá trị input
+function increment(inputId) {
+  var input = document.getElementById(inputId);
+  input.value = parseInt(input.value) + 1;
+  saveValue(inputId); // Lưu giá trị sau khi thay đổi
+}
+
+// Giảm giá trị input
+function decrement(inputId) {
+  var input = document.getElementById(inputId);
+  input.value = Math.max(1, parseInt(input.value) - 1); // Không cho phép giảm dưới 1
+  saveValue(inputId); // Lưu giá trị sau khi thay đổi
+}
+
+// Lưu giá trị vào localStorage
+function saveValue(inputId) {
+  var inputValue = document.getElementById(inputId).value;
+  localStorage.setItem(inputId, inputValue);
+}
+
+// Khôi phục giá trị từ localStorage khi tải lại trang
+function loadValues() {
+  var inputs = [
+    "input_up_down_car",
+    "input_left_right_car",
+    "input_rotate_car",
+    "input_up_down_arm",
+    "input_left_right_arm",
+    "input_rotate_arm",
+  ];
+  inputs.forEach(function (inputId) {
+    var savedValue = localStorage.getItem(inputId);
+    if (savedValue !== null) {
+      document.getElementById(inputId).value = savedValue;
+    }
+  });
+}
+
+// Khởi động
+window.onload = function () {
+  loadValues();
+};
 // Hàm lưu giá trị cho cả Car và Arm
 function saveValues(type) {
   if (type === "Car") {

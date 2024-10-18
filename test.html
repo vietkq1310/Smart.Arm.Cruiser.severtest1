@@ -1,151 +1,213 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dropdown Control Axis Form</title>
+    <title>Car Control</title>
     <style>
       body {
         font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #333;
+        color: white;
       }
 
-      .navbar_control_axis {
-        width: 500px;
-        border: 2px solid #333;
-        border-radius: 10px;
-        padding: 20px;
-        position: relative;
-        cursor: pointer;
-        background-color: #f9f9f9;
+      .moving_column_1 {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        gap: 20px;
       }
 
-      .navbar_control_axis button {
-        margin-right: 20px;
-      }
-
-      .navbar_control_axis label {
-        margin-right: 10px;
-      }
-
-      .navbar_control_axis input {
-        width: 60px;
-        margin-right: 20px;
-      }
-
-      .navbar_car_axis,
-      .navbar_arm_axis {
-        display: none;
-        align-items: center;
-        width: 100%;
-        justify-content: flex-start;
-      }
-
-      .navbar_arm_axis {
-        display: flex; /* Hiển thị mặc định */
-      }
-
-      .navbar_control_axis.open .navbar_car_axis {
+      .Row_seting_move_1,
+      .Row_seting_move_2 {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
       }
 
-      .navbar_control_axis::after {
-        content: "▼";
+      .arrows,
+      .arrows1 {
+        display: grid;
+        grid-template-areas:
+          ". up ."
+          "left . right"
+          ". down .";
+        gap: 10px;
+      }
+
+      .arrows button,
+      .arrows1 button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: black;
+        border: 2px solid #888;
+        color: white;
         font-size: 20px;
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        transition: transform 0.3s;
+        cursor: pointer;
       }
 
-      .navbar_control_axis.open::after {
-        transform: translateY(-50%) rotate(180deg);
+      .arrows button:hover,
+      .arrows1 button:hover {
+        background-color: #444;
       }
 
-      .error-message {
-        color: red;
-        display: none;
+      .up {
+        grid-area: up;
+      }
+      .down {
+        grid-area: down;
+      }
+      .left {
+        grid-area: left;
+      }
+      .right {
+        grid-area: right;
       }
 
-      .dropdown-label {
-        font-weight: bold;
+      .position-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .position-label label {
+        margin-bottom: 5px;
+      }
+
+      input {
+        width: 50px;
+        text-align: center;
+        display: none; /* Mặc định ẩn input */
+      }
+
+      .fade {
+        display: block;
+        opacity: 1;
+        transition: opacity 2s ease-out;
+      }
+
+      .fade-out {
+        opacity: 0;
+        transition: opacity 2s ease-out;
       }
     </style>
   </head>
   <body>
-    <form id="numberForm">
-      <div class="navbar_control_axis" id="navbarControlAxis">
-        <div class="navbar_arm_axis">
-          <button type="button" onclick="runArm()">Run Arm</button>
-          <label for="inputXA">X:</label>
-          <input type="text" id="inputXA" name="inputXA" />
-          <label for="inputYA">Y:</label>
-          <input type="text" id="inputYA" name="inputYA" />
-          <label for="inputZA">Z:</label>
-          <input type="text" id="inputZA" name="inputZA" />
+    <div class="moving_column_1">
+      <!-- Điều khiển di chuyển lên xuống, trái phải -->
+      <div class="Row_seting_move_1">
+        <div class="arrows">
+          <button
+            class="up"
+            onclick="showInput('input_up_down_car', 'increment')"
+          >
+            <i class="fa-solid fa-chevron-up">↑</i>
+          </button>
+          <button
+            class="left"
+            onclick="showInput('input_left_right_car', 'decrement')"
+          >
+            <i class="fa-solid fa-angle-left">←</i>
+          </button>
+          <button
+            class="right"
+            onclick="showInput('input_left_right_car', 'increment')"
+          >
+            <i class="fa-solid fa-angle-right">→</i>
+          </button>
+          <button
+            class="down"
+            onclick="showInput('input_up_down_car', 'decrement')"
+          >
+            <i class="fa-solid fa-angle-down">↓</i>
+          </button>
         </div>
-        <div class="navbar_car_axis">
-          <button type="button" onclick="runCar()">Run Car</button>
-          <label for="inputXC">X:</label>
-          <input type="text" id="inputXC" name="inputXC" />
-          <label for="inputYC">Y:</label>
-          <input type="text" id="inputYC" name="inputYC" />
+
+        <div class="position-label">
+          <label for="input_up_down_car">Lên/Xuống</label>
+          <input
+            type="number"
+            id="input_up_down_car"
+            value="1"
+            onchange="saveValue('input_up_down_car')"
+          />
+        </div>
+        <div class="position-label">
+          <label for="input_left_right_car">Trái/Phải</label>
+          <input
+            type="number"
+            id="input_left_right_car"
+            value="1"
+            onchange="saveValue('input_left_right_car')"
+          />
         </div>
       </div>
-    </form>
 
-    <span id="errorMessage" class="error-message"
-      >Vui lòng nhập một số hợp lệ.</span
-    >
+      <!-- Điều khiển xoay xe -->
+      <div class="Row_seting_move_2">
+        <div class="arrows1">
+          <button onclick="showInput('input_rotate_car', 'increment')">
+            <i class="fa-solid fa-angle-right">→</i>
+          </button>
+          <button onclick="showInput('input_rotate_car', 'decrement')">
+            <i class="fa-solid fa-angle-left">←</i>
+          </button>
+        </div>
+        <div class="position-label">
+          <label for="input_rotate_car">Xoay Xe</label>
+          <input
+            type="number"
+            id="input_rotate_car"
+            value="1"
+            onchange="saveValue('input_rotate_car')"
+          />
+        </div>
+      </div>
+    </div>
 
     <script>
-      const navbarControlAxis = document.getElementById("navbarControlAxis");
-      const armAxis = document.querySelector(".navbar_arm_axis");
-      const carAxis = document.querySelector(".navbar_car_axis");
-
-      navbarControlAxis.addEventListener("click", function (event) {
-        // Ngăn sự kiện click vào phần input hoặc button
-        if (
-          event.target.tagName !== "INPUT" &&
-          event.target.tagName !== "BUTTON"
-        ) {
-          if (navbarControlAxis.classList.contains("open")) {
-            navbarControlAxis.classList.remove("open");
-            carAxis.style.display = "none";
-            armAxis.style.display = "flex";
-          } else {
-            navbarControlAxis.classList.add("open");
-            carAxis.style.display = "flex";
-            armAxis.style.display = "none";
-          }
-        }
-      });
-
-      function runArm() {
-        const xA = document.getElementById("inputXA").value;
-        const yA = document.getElementById("inputYA").value;
-        const zA = document.getElementById("inputZA").value;
-
-        if (isNaN(xA) || isNaN(yA) || isNaN(zA)) {
-          document.getElementById("errorMessage").style.display = "block";
-        } else {
-          document.getElementById("errorMessage").style.display = "none";
-          alert(`Running Arm with X: ${xA}, Y: ${yA}, Z: ${zA}`);
-        }
+      function increment(id) {
+        const input = document.getElementById(id);
+        input.value = parseInt(input.value) + 1;
       }
 
-      function runCar() {
-        const xC = document.getElementById("inputXC").value;
-        const yC = document.getElementById("inputYC").value;
+      function decrement(id) {
+        const input = document.getElementById(id);
+        input.value = parseInt(input.value) - 1;
+      }
 
-        if (isNaN(xC) || isNaN(yC)) {
-          document.getElementById("errorMessage").style.display = "block";
-        } else {
-          document.getElementById("errorMessage").style.display = "none";
-          alert(`Running Car with X: ${xC}, Y: ${yC}`);
+      function saveValue(id) {
+        const input = document.getElementById(id);
+        localStorage.setItem(id, input.value);
+      }
+
+      function showInput(id, action) {
+        const input = document.getElementById(id);
+        if (input) {
+          // Hiển thị input
+          input.classList.add("fade");
+          input.classList.remove("fade-out");
+          input.style.display = "block";
+
+          // Thực hiện hành động tăng hoặc giảm
+          if (action === "increment") {
+            increment(id);
+          } else if (action === "decrement") {
+            decrement(id);
+          }
+
+          // Tự động ẩn sau 2 giây
+          setTimeout(() => {
+            input.classList.add("fade-out");
+            setTimeout(() => {
+              input.style.display = "none";
+            }, 2000); // Sau khi opacity đạt 0
+          }, 2000); // Ẩn sau 2 giây
         }
       }
     </script>

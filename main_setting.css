@@ -160,7 +160,7 @@ body {
   border: 1.5px solid var(--White_with);
   border-radius: 10px;
 }
-.dropdown {
+.Box_set_theme .dropdown {
   margin-bottom: 10px;
   display: flex;
 }
@@ -184,9 +184,9 @@ body {
   margin-left: auto;
 }
 
-.dropdown label {
+.Box_set_theme .dropdown label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-family: "Paytone One", sans-serif;
   font-weight: 500;
   font-style: normal;
@@ -287,6 +287,11 @@ body {
   color: rgb(6, 6, 6);
 }
 
+/* Ẩn phần thiết lập bước di chuyển trong cài đặt khi đang ở giao diện lớn  */
+.Adjust_moves {
+  display: none;
+}
+
 /* Set Step Tab Styles */
 .input-group {
   display: flex;
@@ -341,7 +346,7 @@ body {
 }
 
 .input-wrapper button {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(155, 98, 98, 0);
   color: var(--while);
   border: none;
   padding: 3px 3px;
@@ -404,8 +409,288 @@ body {
 /* --------------------------------------------==== Scale phù hợp với màn hình ngang điện thoại  ====------------------------------------------------------------ */
 @media (max-width: 1000px) {
   .modal {
-    width: 600px;
-    height: 330px;
+    width: 500px;
+    height: 280px;
     transform: translateX(5%);
+  }
+  .modal-header {
+    display: flex;
+    padding-top: -50px;
+    border-bottom: 1px solid #fff;
+  }
+
+  .modal-header h2 {
+    font-size: 20px;
+  }
+
+  .close-btn {
+    font-size: 24px;
+    margin-top: -20px;
+    margin-right: -120px;
+  }
+
+  .modal-body {
+    margin-top: 15px;
+    height: calc(100% - 60px); /* Chiều cao của phần thân modal */
+  }
+
+  .sidebar {
+    width: 26%;
+  }
+
+  .sidebar ul li {
+    font-size: 14px;
+  }
+
+  .sidebar ul li i {
+    margin-right: 10px;
+  }
+
+  .Box_set_theme {
+    margin: 8px;
+    padding: 8px 8px 0px 0px;
+    border: 1.5px solid var(--White_with);
+    border-radius: 10px;
+  }
+
+  .dropdown {
+    margin-bottom: 10px;
+    display: flex;
+  }
+
+  #theme-icon {
+    margin-right: 10px;
+    font-size: 15px;
+  }
+  .label-left {
+    margin: 0;
+    padding-left: 15px;
+  }
+  .section_theme h3 {
+    margin-bottom: -2px;
+    font-size: 14px;
+  }
+  .Box_set_theme .dropdown label {
+    display: block;
+    margin: 0px;
+    font-size: 13px;
+  }
+
+  /* CSS cho các nút bật tắt */
+  .dropdown .theme,
+  .dropdown .st_navbar,
+  .dropdown .theme_control {
+    position: relative;
+    display: flex;
+    width: 30px;
+    height: 15px;
+    appearance: none;
+    background-color: var(--color-neutral-solid-8);
+    border-radius: 20px;
+  }
+
+  .dropdown .theme::before,
+  .dropdown .st_navbar::before,
+  .dropdown .theme_control::before {
+    width: 13px;
+    height: 13px;
+    top: 0.8px;
+    left: 1.8px;
+  }
+
+  .dropdown .theme:checked::before,
+  .dropdown .st_navbar:checked::before,
+  .dropdown .theme_control:checked::before {
+    left: 15px;
+  }
+
+  .content-section {
+    display: none;
+  }
+
+  .content-section.active {
+    display: block;
+  }
+
+  /* Phần thiết bị thực thi */
+  .section_device h3 {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .custom-select {
+    border-radius: 8px;
+    margin: 6px;
+  }
+
+  .custom-select i {
+    font-size: 12px;
+    margin-top: 9px;
+    margin-right: 13px;
+  }
+  .select-items div,
+  .select-selected {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .select-selected {
+    background-color: rgb(203, 119, 119, 0);
+  }
+
+  .select-items {
+    position: absolute;
+    background-color: var(--color-neutral-solid-5);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    top: 110%;
+    z-index: 99;
+    display: none;
+  }
+
+  .select-items div:hover {
+    background-color: var(--Aquamarine);
+    color: rgb(6, 6, 6);
+  }
+
+  /* Phần hiển thị riêng chỉnh bước di chuyển khi nhấn nút cho màn hình nhỏ  */
+  .Adjust_moves {
+    display: block;
+    overflow: hidden;
+  }
+
+  .Adjust_moves h3 {
+    font-size: 13px;
+    margin-top: 5px;
+  }
+
+  .Adjust_move {
+    display: flex;
+    position: relative;
+    border: 1px solid var(--while);
+    height: 140px;
+    border-radius: 8px;
+    margin: 6px;
+    /* justify-content: space-between; */
+    gap: 50px;
+  }
+
+  .moving_column_1,
+  .moving_column_2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Adjust_move i {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Row_seting_move_1,
+  .Row_seting_move_2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .arrows {
+    position: relative;
+    display: flex;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .arrow_move {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 13px;
+    border: 2px solid #000000;
+    transform: rotate(45deg);
+  }
+
+  .arrows1 {
+    position: relative;
+    display: flex;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 30px;
+    border: 2px solid #000000;
+    width: 75px;
+    height: 25px;
+  }
+
+  .arrows i {
+    position: absolute;
+    font-size: 18px;
+  }
+
+  .arrows1 i {
+    position: absolute;
+    font-size: 18px;
+  }
+
+  .arrows .fa-circle-chevron-up {
+    top: -2%;
+    left: 22px;
+    transform: translate(50%, 50%);
+  }
+  .arrows .fa-circle-chevron-down {
+    bottom: 20%;
+    right: 22px;
+    transform: translate(-50%, 50%);
+  }
+  .arrows .fa-circle-chevron-right {
+    right: 16px;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+  .arrows .fa-circle-chevron-left {
+    left: 16px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .arrows1 .fa-circle-chevron-right {
+    right: 13px;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+  .arrows1 .fa-circle-chevron-left {
+    left: 13px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .Adjust_moves input {
+    width: 50px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .Adjust_moves label {
+    color: white;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  .arrows button,
+  .arrows1 button {
+    border: none;
+    background-color: #ffffff00;
+  }
+
+  .position-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

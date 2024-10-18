@@ -533,6 +533,133 @@
                   <i class="fa-solid fa-chevron-down"></i>
                 </div>
               </div>
+              <!-- phần cấu hình bước di chuyển chỉ dùng cho giao diện nhỏ và khi chọn tùy chon giao diện đơn giản  -->
+              <div class="Adjust_moves">
+                <h3>● Cấu hình bước di chuyển</h3>
+                <div class="Adjust_move">
+                  <!-- Cột điều khiển xe -->
+                  <div class="moving_column_1">
+                    <!-- Điều khiển di chuyển lên xuống, trái phải -->
+                    <div class="Row_seting_move_1">
+                      <div class="arrows">
+                        <div class="arrow_move"></div>
+                        <button onclick="increment('input_up_down_car')">
+                          <i class="fa-solid fa-circle-chevron-up"></i>
+                        </button>
+                        <button onclick="decrement('input_left_right_car')">
+                          <i class="fa-solid fa-circle-chevron-left"></i>
+                        </button>
+                        <button onclick="increment('input_left_right_car')">
+                          <i class="fa-solid fa-circle-chevron-right"></i>
+                        </button>
+                        <button onclick="decrement('input_up_down_car')">
+                          <i class="fa-solid fa-circle-chevron-down"></i>
+                        </button>
+                      </div>
+                      <!-- <div class="position-label">
+                        <label for="input_up_down_car">Lên/Xuống</label>
+                        <input
+                          type="number"
+                          id="input_up_down_car"
+                          value="1"
+                          onchange="saveValue('input_up_down_car')"
+                        />
+                      </div> -->
+                      <!-- <div class="position-label">
+                        <label for="input_left_right_car">Trái/Phải</label>
+                        <input
+                          type="number"
+                          id="input_left_right_car"
+                          value="1"
+                          onchange="saveValue('input_left_right_car')"
+                        />
+                      </div> -->
+                    </div>
+
+                    <!-- Điều khiển xoay xe -->
+                    <div class="Row_seting_move_2">
+                      <div class="arrows1">
+                        <button onclick="increment('input_rotate_car')">
+                          <i class="fa-solid fa-circle-chevron-right"></i>
+                        </button>
+                        <button onclick="decrement('input_rotate_car')">
+                          <i class="fa-solid fa-circle-chevron-left"></i>
+                        </button>
+                      </div>
+                      <!-- <div class="position-label">
+                        <label for="input_rotate_car">Xoay Xe</label>
+                        <input
+                          type="number"
+                          id="input_rotate_car"
+                          value="1"
+                          onchange="saveValue('input_rotate_car')"
+                        />
+                      </div> -->
+                    </div>
+                  </div>
+
+                  <!-- Cột điều khiển cánh tay robot -->
+                  <div class="moving_column_2">
+                    <!-- Điều khiển trục X và Y của cánh tay -->
+                    <div class="Row_seting_move_1">
+                      <div class="arrows">
+                        <div class="arrow_move"></div>
+                        <button onclick="increment('input_up_down_arm')">
+                          <i class="fa-solid fa-circle-chevron-up"></i>
+                        </button>
+                        <button onclick="decrement('input_left_right_arm')">
+                          <i class="fa-solid fa-circle-chevron-left"></i>
+                        </button>
+                        <button onclick="increment('input_left_right_arm')">
+                          <i class="fa-solid fa-circle-chevron-right"></i>
+                        </button>
+                        <button onclick="decrement('input_up_down_arm')">
+                          <i class="fa-solid fa-circle-chevron-down"></i>
+                        </button>
+                      </div>
+                      <!-- <div class="position-label">
+                        <label for="input_up_down_arm">Trục X</label>
+                        <input
+                          type="number"
+                          id="input_up_down_arm"
+                          value="1"
+                          onchange="saveValue('input_up_down_arm')"
+                        />
+                      </div>
+                      <div class="position-label">
+                        <label for="input_left_right_arm">Trục Y</label>
+                        <input
+                          type="number"
+                          id="input_left_right_arm"
+                          value="1"
+                          onchange="saveValue('input_left_right_arm')"
+                        />
+                      </div> -->
+                    </div>
+
+                    <!-- Điều khiển trục Z của cánh tay -->
+                    <div class="Row_seting_move_2">
+                      <div class="arrows1">
+                        <button onclick="increment('input_rotate_arm')">
+                          <i class="fa-solid fa-circle-chevron-right"></i>
+                        </button>
+                        <button onclick="decrement('input_rotate_arm')">
+                          <i class="fa-solid fa-circle-chevron-left"></i>
+                        </button>
+                      </div>
+                      <!-- <div class="position-label">
+                        <label for="input_rotate_arm">Trục Z</label>
+                        <input
+                          type="number"
+                          id="input_rotate_arm"
+                          value="1"
+                          onchange="saveValue('input_rotate_arm')"
+                        />
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Tab Content: Set Step -->
