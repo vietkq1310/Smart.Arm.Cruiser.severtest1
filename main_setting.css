@@ -77,7 +77,7 @@ body {
 .modal {
   width: 700px;
   height: 400px; /* Chiều cao cố định của hộp cài đặt */
-  background-color: #444;
+  background-color: var(--color-additional-4-6);
   border-radius: 20px;
   margin: 50px auto;
   padding: 20px;
@@ -359,6 +359,11 @@ body {
 }
 
 /* nút bật tắt động cơ car */
+#tab-setstep .Box_set_step .dropdown {
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
 
 .switch_1_st,
 .switch_2_st {
@@ -389,15 +394,6 @@ body {
 .switch_1_st:checked:before,
 .switch_2_st:checked:before {
   left: 26px;
-}
-
-.Set_box_control_2,
-.Set_box_control_4 {
-  margin-top: 28px;
-  width: 100px;
-  height: 30px;
-  border-radius: 20px;
-  border: 1px solid var(--White_with);
 }
 
 .content-section h3 {
@@ -572,10 +568,9 @@ body {
     display: flex;
     position: relative;
     border: 1px solid var(--while);
-    height: 140px;
+    height: 130px;
     border-radius: 8px;
     margin: 6px;
-    /* justify-content: space-between; */
     gap: 50px;
   }
 
@@ -621,7 +616,7 @@ body {
     position: relative;
     display: flex;
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 5px;
     border-radius: 30px;
     border: 2px solid #000000;
     width: 75px;
@@ -670,15 +665,40 @@ body {
     transform: translate(-50%, -50%);
   }
 
-  .Adjust_moves input {
-    width: 50px;
+  .Row_seting_move_1 .position-label input {
+    position: absolute;
+    border: none;
+    background-color: var(--bg_Gunmetal);
+    color: var(--Aquamarine);
+    margin-left: -360px;
+    top: 26%;
+    width: 18px;
+    height: 18px;
+    border-radius: 30px;
     text-align: center;
     margin-top: 10px;
   }
 
-  .Adjust_moves label {
-    color: white;
-    font-size: 14px;
+  .Row_seting_move_2 .position-label input {
+    position: absolute;
+    border: none;
+    background-color: var(--color-additional-4-6);
+    color: var(--Aquamarine);
+    margin-left: -95px;
+    top: 67.5%;
+    width: 18px;
+    height: 18px;
+    border-radius: 30px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .Adjust_moves .arrows1 label {
+    position: absolute;
+    color: rgb(210, 31, 31);
+    width: 12px;
+    height: 12px;
+    font-size: 18px;
     margin-top: 5px;
   }
 
@@ -692,5 +712,121 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  /* Để input ẩn ban đầu */
+  #input_left_right_car,
+  #input_up_down_car,
+  #input_rotate_car,
+  #input_up_down_arm,
+  #input_left_right_arm,
+  #input_rotate_arm {
+    display: none;
+  }
+
+  /* Khi thêm class show thì input sẽ hiển thị */
+  #input_left_right_car.show,
+  #input_up_down_car.show,
+  #input_rotate_car.show,
+  #input_up_down_arm.show,
+  #input_left_right_arm.show,
+  #input_rotate_arm.show {
+    display: block;
+    animation: fadeInOut 3s forwards;
+  }
+
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Phần cài đặt step cho màn hình nhỏ  */
+
+  .input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  .Box_set_step {
+    margin: 3px;
+    padding: 8px 8px 0px 8px;
+    border: 1.5px solid var(--White_with);
+    border-radius: 10px;
+  }
+  .input-group label {
+    font-size: 13px;
+  }
+
+  .section .Box_set_step .input-group input {
+    width: 40px;
+    height: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    border-radius: 8px;
+    padding: 5px;
+  }
+
+  .content-section .input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--White_with);
+    border-radius: 20px;
+  }
+
+  .Box_set_step .content-section .input-wrapper input {
+    width: 40px;
+  }
+
+  .input-wrapper button {
+    background-color: rgba(155, 98, 98, 0);
+    color: var(--while);
+    border: none;
+    width: 20px;
+    padding: 3px 3px;
+    font-size: 10px;
+    margin: -10px 6px;
+  }
+
+  /* nút bật tắt động cơ car */
+
+  .Box_set_step .dropdown label {
+    font-size: 13px;
+  }
+  .switch_1_st,
+  .switch_2_st {
+    width: 30px;
+    height: 15px;
+  }
+  .switch_1_st::before,
+  .switch_2_st::before {
+    width: 13px;
+    height: 13px;
+    top: 0.8px;
+    left: 1.8px;
+  }
+  .switch_1_st:checked,
+  .switch_2_st:checked {
+    background-color: var(--Aquamarine);
+  }
+  .switch_1_st:checked:before,
+  .switch_2_st:checked:before {
+    left: 15px;
+  }
+
+  .content-section h3 {
+    font-size: 14px;
   }
 }

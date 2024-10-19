@@ -3,212 +3,138 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Car Control</title>
+    <title>Control Panel</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
+      .Row_seting_move_1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .arrows {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .arrows button {
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        background-color: #333;
-        color: white;
+        font-size: 24px;
       }
 
-      .moving_column_1 {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .Row_seting_move_1,
-      .Row_seting_move_2 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .arrows,
-      .arrows1 {
-        display: grid;
-        grid-template-areas:
-          ". up ."
-          "left . right"
-          ". down .";
-        gap: 10px;
-      }
-
-      .arrows button,
-      .arrows1 button {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: black;
-        border: 2px solid #888;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-      }
-
-      .arrows button:hover,
-      .arrows1 button:hover {
+      .arrows button:hover {
         background-color: #444;
       }
 
-      .up {
-        grid-area: up;
-      }
-      .down {
-        grid-area: down;
-      }
-      .left {
-        grid-area: left;
-      }
-      .right {
-        grid-area: right;
-      }
-
       .position-label {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .position-label label {
-        margin-bottom: 5px;
+        margin-top: 10px;
+        text-align: center;
       }
 
       input {
-        width: 50px;
+        display: none; /* Mặc định ẩn */
         text-align: center;
-        display: none; /* Mặc định ẩn input */
       }
 
-      .fade {
+      /* Hiệu ứng khi input được hiển thị */
+      input.show {
         display: block;
-        opacity: 1;
-        transition: opacity 2s ease-out;
+        animation: fadeInOut 3s forwards;
       }
 
-      .fade-out {
-        opacity: 0;
-        transition: opacity 2s ease-out;
+      @keyframes fadeInOut {
+        0% {
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="moving_column_1">
-      <!-- Điều khiển di chuyển lên xuống, trái phải -->
-      <div class="Row_seting_move_1">
-        <div class="arrows">
-          <button
-            class="up"
-            onclick="showInput('input_up_down_car', 'increment')"
-          >
-            <i class="fa-solid fa-chevron-up">↑</i>
-          </button>
-          <button
-            class="left"
-            onclick="showInput('input_left_right_car', 'decrement')"
-          >
-            <i class="fa-solid fa-angle-left">←</i>
-          </button>
-          <button
-            class="right"
-            onclick="showInput('input_left_right_car', 'increment')"
-          >
-            <i class="fa-solid fa-angle-right">→</i>
-          </button>
-          <button
-            class="down"
-            onclick="showInput('input_up_down_car', 'decrement')"
-          >
-            <i class="fa-solid fa-angle-down">↓</i>
-          </button>
-        </div>
-
-        <div class="position-label">
-          <label for="input_up_down_car">Lên/Xuống</label>
-          <input
-            type="number"
-            id="input_up_down_car"
-            value="1"
-            onchange="saveValue('input_up_down_car')"
-          />
-        </div>
-        <div class="position-label">
-          <label for="input_left_right_car">Trái/Phải</label>
-          <input
-            type="number"
-            id="input_left_right_car"
-            value="1"
-            onchange="saveValue('input_left_right_car')"
-          />
-        </div>
+    <div class="Row_seting_move_1">
+      <div class="arrows">
+        <button onclick="increment('input_up_down_car')">
+          <i class="fa-solid fa-chevron-up"></i>
+        </button>
+        <button onclick="decrement('input_left_right_car')">
+          <i class="fa-solid fa-angle-left"></i>
+        </button>
+        <button onclick="increment('input_left_right_car')">
+          <i class="fa-solid fa-angle-right"></i>
+        </button>
+        <button onclick="decrement('input_up_down_car')">
+          <i class="fa-solid fa-angle-down"></i>
+        </button>
       </div>
 
-      <!-- Điều khiển xoay xe -->
-      <div class="Row_seting_move_2">
-        <div class="arrows1">
-          <button onclick="showInput('input_rotate_car', 'increment')">
-            <i class="fa-solid fa-angle-right">→</i>
-          </button>
-          <button onclick="showInput('input_rotate_car', 'decrement')">
-            <i class="fa-solid fa-angle-left">←</i>
-          </button>
-        </div>
-        <div class="position-label">
-          <label for="input_rotate_car">Xoay Xe</label>
-          <input
-            type="number"
-            id="input_rotate_car"
-            value="1"
-            onchange="saveValue('input_rotate_car')"
-          />
-        </div>
+      <div class="position-label">
+        <label for="input_up_down_car">Lên/Xuống</label>
+        <input
+          type="number"
+          id="input_up_down_car"
+          value="1"
+          onchange="saveValue('input_up_down_car')"
+        />
+      </div>
+
+      <div class="position-label">
+        <label for="input_left_right_car">Trái/Phải</label>
+        <input
+          type="number"
+          id="input_left_right_car"
+          value="1"
+          onchange="saveValue('input_left_right_car')"
+        />
       </div>
     </div>
 
     <script>
-      function increment(id) {
-        const input = document.getElementById(id);
+      // Hàm hiện và ẩn input
+      function showInput(inputId) {
+        const input = document.getElementById(inputId);
+        input.classList.add("show");
+
+        // Sau 3 giây, ẩn input đi
+        setTimeout(() => {
+          input.classList.remove("show");
+        }, 3000);
+      }
+
+      // Hàm tăng giá trị input
+      function increment(inputId) {
+        const input = document.getElementById(inputId);
         input.value = parseInt(input.value) + 1;
+        showInput(inputId);
       }
 
-      function decrement(id) {
-        const input = document.getElementById(id);
+      // Hàm giảm giá trị input
+      function decrement(inputId) {
+        const input = document.getElementById(inputId);
         input.value = parseInt(input.value) - 1;
+        showInput(inputId);
       }
 
-      function saveValue(id) {
-        const input = document.getElementById(id);
-        localStorage.setItem(id, input.value);
-      }
-
-      function showInput(id, action) {
-        const input = document.getElementById(id);
-        if (input) {
-          // Hiển thị input
-          input.classList.add("fade");
-          input.classList.remove("fade-out");
-          input.style.display = "block";
-
-          // Thực hiện hành động tăng hoặc giảm
-          if (action === "increment") {
-            increment(id);
-          } else if (action === "decrement") {
-            decrement(id);
-          }
-
-          // Tự động ẩn sau 2 giây
-          setTimeout(() => {
-            input.classList.add("fade-out");
-            setTimeout(() => {
-              input.style.display = "none";
-            }, 2000); // Sau khi opacity đạt 0
-          }, 2000); // Ẩn sau 2 giây
-        }
+      // Hàm lưu giá trị (có thể mở rộng nếu cần)
+      function saveValue(inputId) {
+        const input = document.getElementById(inputId);
+        console.log("Giá trị đã lưu:", input.value);
       }
     </script>
   </body>

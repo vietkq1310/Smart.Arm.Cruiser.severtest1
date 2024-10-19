@@ -378,7 +378,8 @@ ipBtn.addEventListener("click", () => {
   ipInput.classList.add("valid");
   errorMessage.style.display = "none";
 
-  const wsUrl = `ws://${ipAddress}:81/`;
+  const wsUrl = `wss://${ipAddress}:81/`;
+
   webSocket = new WebSocket(wsUrl);
 
   webSocket.onopen = () => {
@@ -838,10 +839,22 @@ document
 
 // ------------------------------------------------------------ Phần cài đặt 2 ------------------------------------------------//
 // Tăng giá trị input
+
+function showInput(inputId) {
+  const input = document.getElementById(inputId);
+  input.classList.add("show");
+
+  // Sau 3 giây, ẩn input đi
+  setTimeout(() => {
+    input.classList.remove("show");
+  }, 3000);
+}
+
 function increment(inputId) {
   var input = document.getElementById(inputId);
   input.value = parseInt(input.value) + 1;
   saveValue(inputId); // Lưu giá trị sau khi thay đổi
+  showInput(inputId); // Hiển thị input sau khi thay đổi
 }
 
 // Giảm giá trị input
@@ -849,6 +862,7 @@ function decrement(inputId) {
   var input = document.getElementById(inputId);
   input.value = Math.max(1, parseInt(input.value) - 1); // Không cho phép giảm dưới 1
   saveValue(inputId); // Lưu giá trị sau khi thay đổi
+  showInput(inputId); // Hiển thị input sau khi thay đổi
 }
 
 // Lưu giá trị vào localStorage
@@ -879,6 +893,7 @@ function loadValues() {
 window.onload = function () {
   loadValues();
 };
+
 // Hàm lưu giá trị cho cả Car và Arm
 function saveValues(type) {
   if (type === "Car") {
